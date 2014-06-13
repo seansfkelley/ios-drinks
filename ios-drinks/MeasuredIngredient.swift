@@ -1,5 +1,5 @@
 //
-//  MeasureIngredient.swift
+//  MeasuredIngredient.swift
 //  ios-drinks
 //
 //  Created by Sean Kelley on 6/12/14.
