@@ -8,9 +8,9 @@
 
 import Foundation
 
-typealias JSONObject = Dictionary<String, AnyObject>
+typealias JSONObject = NSDictionary
 
-func loadIngredientsFromJson(path: String) -> JSONObject[] {
+func loadJSONArrayFromPath(path: String) -> JSONObject[] {
     var error: NSError?
     let jsonData = NSData.dataWithContentsOfFile(path, options: nil, error: &error)
     let parsedObject = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &error) as JSONObject[]
@@ -24,9 +24,19 @@ func loadIngredientsFromJson(path: String) -> JSONObject[] {
 }
 
 class RecipeIndex {
-    let allIngredients : Ingredient[]
+    let allIngredients: Ingredient[]
+    let allRecipes: Recipe[] = []
+
+    let _tagToIngredient: Dictionary<String, Ingredient>
 
     init() {
-        self.allIngredients = loadIngredientsFromJson(NSBundle.mainBundle().pathForResource("ingredients", ofType: ".json")).map({ Ingredient(fromParsedJson: $0) })
+        self.allIngredients = loadJSONArrayFromPath(NSBundle.mainBundle().pathForResource("ingredients", ofType: ".json")).map({ Ingredient(fromParsedJson: $0) })
+
+        self._tagToIngredient = Dictionary<String, Ingredient>()
+        for i in self.allIngredients {
+            self._tagToIngredient[i.tag] = i
+        }
+
+        self.allRecipes = loadJSONArrayFromPath(NSBundle.mainBundle().pathForResource("recipes", ofType: ".json")).map({ Recipe(fromParsedJson: $0, withIngredients: self._tagToIngredient) })
     }
 }

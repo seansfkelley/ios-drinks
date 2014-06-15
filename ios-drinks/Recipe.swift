@@ -43,4 +43,19 @@ class Recipe {
         normalizedName = collapseWhitespaceRegex.stringByReplacingMatchesInString(normalizedName, options: nil, range: NSRange(location: 0, length: countElements(normalizedName)), withTemplate: " ")
         self.normalizedName = normalizedName.stringByReplacingOccurrencesOfString(" ", withString: "-")
      }
+
+    convenience init(fromParsedJson json: NSDictionary, withIngredients tagToIngredient: Dictionary<String, Ingredient>) {
+        let name = json["name"] as String
+        let instructions = json["instructions"] as String
+        let notes = json["notes"] as? String
+        let sourceName = json["source"] as? String
+        let sourceUrl = json["url"] as? String
+
+        var ingredients: MeasuredIngredient[] = []
+        for i: NSDictionary in json["ingredients"] as Array<NSDictionary> {
+            ingredients += MeasuredIngredient(ingredient: tagToIngredient[i["tag"] as String]!, measurementDisplay: i["displayMeasure"] as String, ingredientDisplay: i["displayIngredient"] as String)
+        }
+
+        self.init(name: name, measuredIngredients: ingredients, instructions: instructions, isCustom: false, notes: notes, sourceName: sourceName, sourceUrl: sourceUrl)
+    }
 }

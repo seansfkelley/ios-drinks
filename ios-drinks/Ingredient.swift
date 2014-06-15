@@ -23,29 +23,19 @@ class Ingredient {
         self.isHidden = isHidden
     }
 
-    init(fromParsedJson: Dictionary<String, AnyObject>) {
-        if let displayName: AnyObject = fromParsedJson["display"] {
-            self.displayName = displayName as String
-        } else {
-            raiseInputException("All ingredients must have a display field.")
-        }
+    init(fromParsedJson json: NSDictionary) {
+        self.displayName = json["display"] as String
 
-        if let tag: AnyObject = fromParsedJson["tag"] {
+        if let tag: AnyObject = json["tag"] {
             self.tag = tag as String
         } else {
             self.tag = self.displayName.lowercaseString
         }
 
-        if let genericTag: AnyObject = fromParsedJson["genericTag"] {
-            self.genericTag = genericTag as? String
-        }
+        self.genericTag = json["genericTag"] as? String
 
-        if let isHidden: AnyObject = fromParsedJson["hidden"] {
+        if let isHidden: AnyObject = json["hidden"] {
             self.isHidden = isHidden as Bool
         }
     }
-}
-
-func raiseInputException(description: String) {
-    NSException.raise("IllegalInputFormat", format: description, arguments: CVaListPointer(fromUnsafePointer: UnsafePointer()))
 }

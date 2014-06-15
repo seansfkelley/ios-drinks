@@ -12,18 +12,20 @@ class AlphabeticalTableSectionManager<T: AnyObject> {
     typealias Section = T[]
 
     let letterToSection: Dictionary<String, Section>
-    let indexToSection: Section[]
-    let indexToSectionTitle: String[]
+    let orderedSections: Section[]
+    let orderedSectionTitles: String[]
     let sortedItems: Section
     let allSectionIndexTitles: String[]
 
     init(items: T[], titleExtractor: (T) -> String) {
         self.sortedItems = sort(items, { titleExtractor($0) < titleExtractor($1) })
 
-        // TODO: Why can't I just use regular arrays with the `var` declaration?!
         var letterToSection = Dictionary<String, Section>()
-        var indexToSection: Section[] = []
-        var indexToSectionTitle: String[] = []
+        var orderedSections: Section[] = []
+        var orderedSectionTitles: String[] = []
+
+        var letterToIndex = Dictionary<String, Int>()
+        var i = 0
 
         for item in self.sortedItems {
             let key = "\(titleExtractor(item).utf16[0])".uppercaseString
@@ -31,17 +33,20 @@ class AlphabeticalTableSectionManager<T: AnyObject> {
             if var section: Section = letterToSection[key] {
                 section += item
                 letterToSection[key] = section
+                orderedSections[letterToIndex[key]!] = section
             } else {
                 let section = [item]
                 letterToSection.updateValue(section, forKey: key)
-                indexToSection += section
-                indexToSectionTitle += key
+                orderedSections += section
+                orderedSectionTitles += key
+
+                letterToIndex[key] = i++
             }
         }
 
         self.letterToSection = letterToSection
-        self.indexToSection = indexToSection
-        self.indexToSectionTitle = indexToSectionTitle
+        self.orderedSections = orderedSections
+        self.orderedSectionTitles = orderedSectionTitles
         self.allSectionIndexTitles = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#" ]
     }
 }
