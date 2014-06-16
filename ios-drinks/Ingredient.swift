@@ -34,8 +34,8 @@ class Ingredient {
 
         self.genericTag = json["genericTag"] as? String
 
-        if let isHidden: AnyObject = json["hidden"] {
-            self.isHidden = isHidden as Bool
+        if let isHidden = json["hidden"] as? Bool {
+            self.isHidden = isHidden
         }
     }
 }

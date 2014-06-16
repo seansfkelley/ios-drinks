@@ -53,7 +53,17 @@ class Recipe {
 
         var ingredients: MeasuredIngredient[] = []
         for i: NSDictionary in json["ingredients"] as Array<NSDictionary> {
-            ingredients += MeasuredIngredient(ingredient: tagToIngredient[i["tag"] as String]!, measurementDisplay: i["displayMeasure"] as String, ingredientDisplay: i["displayIngredient"] as String)
+            if let tag = i["tag"] as? String {
+                if let ingredient = tagToIngredient[tag] {
+                    var measurement = ""
+                    if let actualMeasurement = i["displayMeasure"] as? String {
+                        measurement = actualMeasurement
+                    }
+                    ingredients += MeasuredIngredient(ingredient: ingredient, measurementDisplay: measurement, ingredientDisplay: i["displayIngredient"] as String)
+                } else {
+                    println("Ignoring recipe '\(name)' because it refers to unknown ingredient tag '\(tag)'")
+                }
+            }
         }
 
         self.init(name: name, measuredIngredients: ingredients, instructions: instructions, isCustom: false, notes: notes, sourceName: sourceName, sourceUrl: sourceUrl)
