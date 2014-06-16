@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller - Browse All-->
+        <!--Browse All Recipes View Controller - Browse All-->
         <scene sceneID="diV-Vg-Ltr">
             <objects>
-                <tableViewController id="T1K-pj-ceK" sceneMemberID="viewController">
+                <tableViewController id="T1K-pj-ceK" customClass="BrowseAllRecipesViewController" customModule="ios_drinks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="lcZ-Xd-kSA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

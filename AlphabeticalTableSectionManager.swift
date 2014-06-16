@@ -28,7 +28,8 @@ class AlphabeticalTableSectionManager<T: AnyObject> {
         var i = 0
 
         for item in self.sortedItems {
-            let key = "\(titleExtractor(item).utf16[0])".uppercaseString
+            // TODO: Gross workaround to get the first character of the string.
+            let key = String(Array(titleExtractor(item))[0])
 
             if var section: Section = letterToSection[key] {
                 section += item
@@ -48,6 +49,20 @@ class AlphabeticalTableSectionManager<T: AnyObject> {
         self.orderedSections = orderedSections
         self.orderedSectionTitles = orderedSectionTitles
         self.allSectionIndexTitles = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#" ]
+    }
+
+    func objectAtIndexPath(indexPath: NSIndexPath) -> T {
+        return self.orderedSections[indexPath.section][indexPath.row]
+    }
+
+    func sectionForSectionIndexTitle(sectionTitle: String) -> Int {
+        for var i = self.orderedSectionTitles.count - 1; i >= 0; --i {
+            var compareResult: NSComparisonResult = sectionTitle.compare(self.orderedSectionTitles[i])
+            if compareResult == NSComparisonResult.OrderedDescending || compareResult == NSComparisonResult.OrderedSame {
+                return i
+            }
+        }
+        return self.orderedSectionTitles.count - 1
     }
 }
 
