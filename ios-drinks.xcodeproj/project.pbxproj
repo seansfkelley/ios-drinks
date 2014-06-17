@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7814F365194E9331007E3DC7 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7814F364194E9331007E3DC7 /* RecipeDetailViewController.swift */; };
+		7814F367194FF79E007E3DC7 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7814F366194FF79E007E3DC7 /* Set.swift */; };
 		787289751946DB370037A553 /* ingredients.json in Resources */ = {isa = PBXBuildFile; fileRef = 787289741946DB370037A553 /* ingredients.json */; };
 		787D0DB3194A816E00229C76 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787D0DB2194A816E00229C76 /* Recipe.swift */; };
 		787D0DB5194A882800229C76 /* RecipeSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787D0DB4194A882800229C76 /* RecipeSearchResult.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7814F364194E9331007E3DC7 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
+		7814F366194FF79E007E3DC7 /* Set.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Set.swift; path = ../Set.swift; sourceTree = "<group>"; };
 		787289741946DB370037A553 /* ingredients.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ingredients.json; sourceTree = "<group>"; };
 		787D0DB2194A816E00229C76 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		787D0DB4194A882800229C76 /* RecipeSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeSearchResult.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				787D0DBB194A8A8500229C76 /* BrowseAllRecipesViewController.swift */,
+				7814F364194E9331007E3DC7 /* RecipeDetailViewController.swift */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				78C1C693194D68E700469918 /* exceptionUtils.swift */,
+				7814F366194FF79E007E3DC7 /* Set.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -295,6 +301,8 @@
 				789CA69819419DEB00CB4853 /* AppDelegate.swift in Sources */,
 				789CA6BC19422D5E00CB4853 /* Ingredient.swift in Sources */,
 				78C1C694194D68E700469918 /* exceptionUtils.swift in Sources */,
+				7814F365194E9331007E3DC7 /* RecipeDetailViewController.swift in Sources */,
+				7814F367194FF79E007E3DC7 /* Set.swift in Sources */,
 				787D0DB3194A816E00229C76 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,11 +8,11 @@
 
 class RecipeSearchResult {
     let recipe: Recipe
-    let availableIngredients: Ingredient[]
-    let substituteIngredients: Ingredient[]
-    let missingIngredients: Ingredient[]
+    let availableIngredients: MeasuredIngredient[]
+    let substituteIngredients: MeasuredIngredient[]
+    let missingIngredients: MeasuredIngredient[]
 
-    init(recipe: Recipe, availableIngredients: Ingredient[], substituteIngredients: Ingredient[], missingIngredients: Ingredient[]) {
+    init(recipe: Recipe, availableIngredients: MeasuredIngredient[], substituteIngredients: MeasuredIngredient[], missingIngredients: MeasuredIngredient[]) {
         self.recipe = recipe
         self.availableIngredients = availableIngredients
         self.substituteIngredients = substituteIngredients

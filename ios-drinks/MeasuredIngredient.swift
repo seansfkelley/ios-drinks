@@ -7,11 +7,11 @@
 //
 
 class MeasuredIngredient {
-    let ingredient: Ingredient
+    let ingredient: Ingredient?
     let measurementDisplay: String
     let ingredientDisplay: String
 
-    init(ingredient: Ingredient, measurementDisplay: String, ingredientDisplay: String) {
+    init(ingredient: Ingredient?, measurementDisplay: String, ingredientDisplay: String) {
         self.ingredient = ingredient
         self.measurementDisplay = measurementDisplay
         self.ingredientDisplay = ingredientDisplay

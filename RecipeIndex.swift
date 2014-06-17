@@ -25,7 +25,7 @@ func loadJSONArrayFromPath(path: String) -> JSONObject[] {
 
 class RecipeIndex {
     let allIngredients: Ingredient[]
-    let allRecipes: Recipe[] = []
+    let allRecipes: Recipe[]
 
     let _tagToIngredient: Dictionary<String, Ingredient>
 
@@ -37,6 +37,33 @@ class RecipeIndex {
             self._tagToIngredient[i.tag] = i
         }
 
+        self.allRecipes = [] // Why is this necessary?!
         self.allRecipes = loadJSONArrayFromPath(NSBundle.mainBundle().pathForResource("recipes", ofType: ".json")).map({ Recipe(fromParsedJson: $0, withIngredients: self._tagToIngredient) })
+    }
+
+    func generateDummySearchResultFor(recipe: Recipe) -> RecipeSearchResult {
+        return self._generateRecipeSearchResultFor(recipe, withAvailableTags: Set(array: self.allIngredients.map { $0.tag }))
+    }
+
+    func _generateRecipeSearchResultFor(recipe: Recipe, withAvailableTags tags: Set<String>) -> RecipeSearchResult {
+        var missing: MeasuredIngredient[] = []
+        var substitutes: MeasuredIngredient[] = []
+        var available: MeasuredIngredient[] = []
+
+        for m in recipe.measuredIngredients {
+            if let ingredient = m.ingredient {
+                if tags[ingredient.tag] {
+                    available += m
+                } else if tags[ingredient.genericTag] {
+                    substitutes += m
+                } else {
+                    missing += m
+                }
+            } else {
+                available += m
+            }
+        }
+
+        return RecipeSearchResult(recipe: recipe, availableIngredients: available, substituteIngredients: substitutes, missingIngredients: missing)
     }
 }

@@ -24,7 +24,13 @@ class Recipe {
 
     var rawIngredients: Ingredient[] {
     get {
-        return self.measuredIngredients.map { $0.ingredient }
+        return self.measuredIngredients.filter({
+            if let _ = $0.ingredient {
+                return true
+            } else {
+                return false
+            }
+        }).map { $0.ingredient! }
     }
 
     set { /* readonly */ }
@@ -53,17 +59,19 @@ class Recipe {
 
         var ingredients: MeasuredIngredient[] = []
         for i: NSDictionary in json["ingredients"] as Array<NSDictionary> {
+            var ingredient: Ingredient?
             if let tag = i["tag"] as? String {
-                if let ingredient = tagToIngredient[tag] {
-                    var measurement = ""
-                    if let actualMeasurement = i["displayMeasure"] as? String {
-                        measurement = actualMeasurement
-                    }
-                    ingredients += MeasuredIngredient(ingredient: ingredient, measurementDisplay: measurement, ingredientDisplay: i["displayIngredient"] as String)
+                if let ingredientFromDictionary = tagToIngredient[tag] {
+                    ingredient = ingredientFromDictionary
                 } else {
                     println("Ignoring recipe '\(name)' because it refers to unknown ingredient tag '\(tag)'")
                 }
             }
+            var measurement = ""
+            if let actualMeasurement = i["displayMeasure"] as? String {
+                measurement = actualMeasurement
+            }
+            ingredients += MeasuredIngredient(ingredient: ingredient, measurementDisplay: measurement, ingredientDisplay: i["displayIngredient"] as String)
         }
 
         self.init(name: name, measuredIngredients: ingredients, instructions: instructions, isCustom: false, notes: notes, sourceName: sourceName, sourceUrl: sourceUrl)

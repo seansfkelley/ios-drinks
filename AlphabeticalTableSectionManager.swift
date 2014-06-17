@@ -64,20 +64,12 @@ class AlphabeticalTableSectionManager<T: AnyObject> {
         }
         return self.orderedSectionTitles.count - 1
     }
-}
 
-//@interface SortedTableSectionManager : NSObject
-//
-//- (id)initWithArray:(NSArray *)array sortedByProperty:(NSString *)property;
-//
-//- (id)objectForIndexPath:(NSIndexPath *)indexPath;
-//- (NSUInteger)sortedIndexForIndexPath:(NSIndexPath *)indexPath;
-//- (NSUInteger)sectionForSectionIndexTitle:(NSString *)title;
-//
-//@property (readonly) NSDictionary *nameToSection;
-//@property (readonly) NSArray *indexToSection;
-//@property (readonly) NSArray *indexToTitle;
-//@property (readonly) NSArray *sorted;
-//@property (readonly) NSArray *sectionIndexTitles;
-//
-//@end
+    func sortedIndexForIndexPath(indexPath: NSIndexPath) -> Int {
+        var index = 0
+        for i in 0..indexPath.section { // .. -> exclusive
+            index += self.orderedSections[i].count
+        }
+        return index
+    }
+}
