@@ -20,9 +20,9 @@ class IngredientSection {
 
 enum RowType {
     case Ingredient
-    case Source
     case Instructions
     case Notes
+    case Source
 }
 
 class RecipeDetailViewController : UITableViewController {
@@ -101,6 +101,10 @@ class RecipeDetailViewController : UITableViewController {
         }
     }
 
+    func _rowTypeForSection(tableView: UITableView, section: Int) -> RowType {
+        return self._rowTypeForIndexPath(tableView, indexPath: NSIndexPath(forRow: 0, inSection: section))
+    }
+
     // pragma mark - UITableViewDataSource
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int  {
@@ -119,7 +123,20 @@ class RecipeDetailViewController : UITableViewController {
         if section < self._ingredientSections.count {
             return self._ingredientSections[section].title
         } else {
-            return nil
+            switch (self._rowTypeForSection(tableView, section: section)) {
+            case .Ingredient:
+                assert(false, "Mismatch between number of ingredient sections and computed row type.")
+                return nil
+            case .Instructions:
+                return "Instructions"
+            case .Notes:
+                return "Notes"
+            case .Source:
+                return "Source"
+            default:
+                assert(false, "Unhandled enumeration type in switch.")
+                return nil
+            }
         }
     }
 
@@ -141,7 +158,7 @@ class RecipeDetailViewController : UITableViewController {
         var cell = tableView.dequeueReusableCellWithIdentifier("ProseTextPrototypeCell", forIndexPath:indexPath) as UITableViewCell
 
         // Configure shared values.
-        cell.textLabel.text = "" // Trick the layout into ignoring this label entirely.
+        cell.textLabel.text = nil // "" // Trick the layout into ignoring this label entirely.
         cell.detailTextLabel.numberOfLines = 0
         cell.detailTextLabel.lineBreakMode = .ByWordWrapping
 

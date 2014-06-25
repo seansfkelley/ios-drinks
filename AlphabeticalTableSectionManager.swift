@@ -70,6 +70,6 @@ class AlphabeticalTableSectionManager<T: AnyObject> {
         for i in 0..indexPath.section { // .. -> exclusive
             index += self.orderedSections[i].count
         }
-        return index
+        return index + indexPath.row
     }
 }
