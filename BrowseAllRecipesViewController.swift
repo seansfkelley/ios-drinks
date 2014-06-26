@@ -15,6 +15,8 @@ class BrowseAllRecipesViewController : UITableViewController {
     var manager: AlphabeticalTableSectionManager<RecipeSearchResult>?
 
     override func viewDidLoad()  {
+        super.viewDidLoad()
+
         self.index = RecipeIndex()
         self.manager = AlphabeticalTableSectionManager<RecipeSearchResult>(items: self.index!.allRecipes.map { self.index!.generateDummySearchResultFor($0) }, titleExtractor: { $0.recipe.name })
     }
