@@ -23,7 +23,7 @@ func loadJSONArrayFromPath(path: String) -> JSONObject[] {
     }
 }
 
-var INDEX_INSTANCE = RecipeIndex()
+var INSTANCE = RecipeIndex()
 
 class RecipeIndex {
     let allIngredients: Ingredient[]
@@ -32,7 +32,7 @@ class RecipeIndex {
     let _tagToIngredient: Dictionary<String, Ingredient>
 
     class func instance() -> RecipeIndex {
-        return INDEX_INSTANCE
+        return INSTANCE
     }
 
     init() {
@@ -48,10 +48,10 @@ class RecipeIndex {
     }
 
     func generateDummySearchResultFor(recipe: Recipe) -> RecipeSearchResult {
-        return self._generateRecipeSearchResultFor(recipe, withAvailableTags: Set(array: self.allIngredients.map { $0.tag }))
+        return self.generateRecipeSearchResultFor(recipe, withAvailableTags: Set(array: self.allIngredients.map { $0.tag }))
     }
 
-    func _generateRecipeSearchResultFor(recipe: Recipe, withAvailableTags tags: Set<String>) -> RecipeSearchResult {
+    func generateRecipeSearchResultFor(recipe: Recipe, withAvailableTags tags: Set<String>) -> RecipeSearchResult {
         var missing: MeasuredIngredient[] = []
         var substitutes: MeasuredIngredient[] = []
         var available: MeasuredIngredient[] = []
