@@ -70,6 +70,13 @@ class BrowseAllRecipesViewController : UITableViewController {
 
             detailController.allRecipeResults = self.manager!.sortedItems
             detailController.currentResultIndex = self.manager!.sortedIndexForIndexPath(indexPath)
+        } else if controller.isKindOfClass(PagingRecipeViewController.self) {
+            let pagingController = controller as PagingRecipeViewController
+            let indexPath = self.tableView.indexPathForSelectedRow()
+
+            pagingController.allRecipeResults = self.manager!.sortedItems
+            pagingController.currentResultIndex = self.manager!.sortedIndexForIndexPath(indexPath)
+
         } else {
             assert(false, "Unknown segue. All segues must be handled.")
         }
