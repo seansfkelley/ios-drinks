@@ -23,21 +23,9 @@ class BrowseAllRecipesViewController : AbstractRecipesViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject) {
         // http://stackoverflow.com/questions/15414146/uitableview-prepareforsegue-assigning-indexpath-to-sender
 
-        // TODO: Factor this grossness out as a function that takes a block or a map of classes to blocks.
-        var controller: UIViewController
-        if segue.destinationViewController.isKindOfClass(UINavigationController.self) {
-            controller = (segue.destinationViewController as UINavigationController).viewControllers[0] as UIViewController
-        } else {
-            controller = segue.destinationViewController as UIViewController
-        }
+        var controller = UIUtils.actualTargetViewControllerForSegue(segue)
 
-        if controller.isKindOfClass(RecipeDetailViewController.self) {
-            let detailController = controller as RecipeDetailViewController
-            let indexPath = self.tableView.indexPathForSelectedRow()
-
-            detailController.allRecipeResults = self.manager!.sortedItems
-            detailController.currentResultIndex = self.manager!.sortedIndexForIndexPath(indexPath)
-        } else if controller.isKindOfClass(PagingRecipeViewController.self) {
+        if controller.isKindOfClass(PagingRecipeViewController.self) {
             let pagingController = controller as PagingRecipeViewController
             let indexPath = self.tableView.indexPathForSelectedRow()
 
