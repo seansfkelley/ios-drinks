@@ -23,11 +23,17 @@ func loadJSONArrayFromPath(path: String) -> JSONObject[] {
     }
 }
 
+var INDEX_INSTANCE = RecipeIndex()
+
 class RecipeIndex {
     let allIngredients: Ingredient[]
     let allRecipes: Recipe[]
 
     let _tagToIngredient: Dictionary<String, Ingredient>
+
+    class func instance() -> RecipeIndex {
+        return INDEX_INSTANCE
+    }
 
     init() {
         self.allIngredients = loadJSONArrayFromPath(NSBundle.mainBundle().pathForResource("ingredients", ofType: ".json")).map({ Ingredient(fromParsedJson: $0) })

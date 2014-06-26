@@ -2,13 +2,13 @@
 //  BrowseAllRecipesViewController.swift
 //  ios-drinks
 //
-//  Created by Sean Kelley on 6/12/14.
+//  Created by Sean Kelley on 6/25/14.
 //  Copyright (c) 2014 Sean Kelley. All rights reserved.
 //
 
 import UIKit
 
-class BrowseAllRecipesViewController : AbstractRecipesViewController {
+class MixableRecipesViewController : AbstractRecipesViewController {
     override var recipes: RecipeSearchResult[] {
         let index = RecipeIndex.instance()
         return index.allRecipes.map { index.generateDummySearchResultFor($0) }
@@ -16,7 +16,19 @@ class BrowseAllRecipesViewController : AbstractRecipesViewController {
 
     // pragma mark UITableViewDataSource
 
-    // nothing!
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        let recipeResult = self.manager!.objectAtIndexPath(indexPath)
+        let recipe = recipeResult.recipe
+
+        if recipeResult.missingIngredients.count > 0 {
+            cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients (\(recipeResult.missingIngredients.count) missing)"
+        } else {
+            cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients"
+        }
+
+        return cell
+    }
 
     // pragma mark - Navigation
 

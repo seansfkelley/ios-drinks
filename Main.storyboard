@@ -64,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGW-kc-OkI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2342" y="20"/>
+            <point key="canvasLocation" x="2874" y="20"/>
         </scene>
         <!--Recipe Detail View Controller-->
         <scene sceneID="imD-QV-2Z7">
@@ -150,18 +150,19 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="SY8-qd-oKs" kind="relationship" relationship="viewControllers" id="Oiv-Po-IOd"/>
                         <segue destination="FCO-Wx-pRz" kind="relationship" relationship="viewControllers" id="4MN-ff-xSk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcF-Vh-IM9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="170" y="380"/>
+            <point key="canvasLocation" x="166" y="382"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - Browse-->
         <scene sceneID="pKR-rw-OeM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FCO-Wx-pRz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Q5t-z9-Ykf"/>
+                    <tabBarItem key="tabBarItem" title="Browse" id="Q5t-z9-Ykf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N7D-ZK-7YZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -175,6 +176,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c1L-E8-SKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="732" y="724"/>
+        </scene>
+        <!--Mixable Recipes View Controller - Mixable Drinks-->
+        <scene sceneID="pWO-Df-RJV">
+            <objects>
+                <tableViewController id="zvv-lt-lX6" customClass="MixableRecipesViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="mgm-PB-3KS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipePrototypeCell" textLabel="nhP-Rz-nWR" detailTextLabel="SXC-Tl-eB7" style="IBUITableViewCellStyleSubtitle" id="8NJ-Oz-Wj3">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8NJ-Oz-Wj3" id="YUi-RD-RKO">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nhP-Rz-nWR">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SXC-Tl-eB7">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zvv-lt-lX6" id="9B9-4u-pKC"/>
+                            <outlet property="delegate" destination="zvv-lt-lX6" id="ul8-dO-tQJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Mixable Drinks" id="jMz-tO-ZVj"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hnb-we-dKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1264" y="20"/>
+        </scene>
+        <!--Navigation Controller - Mixable-->
+        <scene sceneID="ObO-sA-st8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SY8-qd-oKs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Mixable" id="Mjs-sa-8AV"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vwj-Gy-ZJc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zvv-lt-lX6" kind="relationship" relationship="rootViewController" id="JP0-aF-M3w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ZF-ib-zc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="732" y="20"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

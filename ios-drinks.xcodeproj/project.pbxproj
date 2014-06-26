@@ -24,6 +24,8 @@
 		789CA6BC19422D5E00CB4853 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789CA6BB19422D5E00CB4853 /* Ingredient.swift */; };
 		78C1C692194D66DB00469918 /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 78C1C691194D66DB00469918 /* recipes.json */; };
 		78C1C694194D68E700469918 /* exceptionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C1C693194D68E700469918 /* exceptionUtils.swift */; };
+		78C1DD0A195BF8150077C029 /* MixableRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C1DD09195BF8150077C029 /* MixableRecipesViewController.swift */; };
+		78C1DD0C195BF9530077C029 /* AbstractRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C1DD0B195BF9530077C029 /* AbstractRecipesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		789CA6BB19422D5E00CB4853 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		78C1C691194D66DB00469918 /* recipes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
 		78C1C693194D68E700469918 /* exceptionUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = exceptionUtils.swift; sourceTree = "<group>"; };
+		78C1DD09195BF8150077C029 /* MixableRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixableRecipesViewController.swift; sourceTree = "<group>"; };
+		78C1DD0B195BF9530077C029 /* AbstractRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRecipesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +92,9 @@
 		787D0DB6194A8A2C00229C76 /* view controllers */ = {
 			isa = PBXGroup;
 			children = (
+				78C1DD0B195BF9530077C029 /* AbstractRecipesViewController.swift */,
 				787D0DBB194A8A8500229C76 /* BrowseAllRecipesViewController.swift */,
+				78C1DD09195BF8150077C029 /* MixableRecipesViewController.swift */,
 				7814F364194E9331007E3DC7 /* RecipeDetailViewController.swift */,
 				7814F369195A95AB007E3DC7 /* PagingRecipeViewController.swift */,
 			);
@@ -302,10 +308,12 @@
 				787D0DC1194A8D0100229C76 /* AlphabeticalTableSectionManager.swift in Sources */,
 				787D0DBA194A8A7400229C76 /* MeasuredIngredient.swift in Sources */,
 				787D0DB5194A882800229C76 /* RecipeSearchResult.swift in Sources */,
+				78C1DD0C195BF9530077C029 /* AbstractRecipesViewController.swift in Sources */,
 				789CA69819419DEB00CB4853 /* AppDelegate.swift in Sources */,
 				789CA6BC19422D5E00CB4853 /* Ingredient.swift in Sources */,
 				78C1C694194D68E700469918 /* exceptionUtils.swift in Sources */,
 				7814F365194E9331007E3DC7 /* RecipeDetailViewController.swift in Sources */,
+				78C1DD0A195BF8150077C029 /* MixableRecipesViewController.swift in Sources */,
 				7814F367194FF79E007E3DC7 /* Set.swift in Sources */,
 				787D0DB3194A816E00229C76 /* Recipe.swift in Sources */,
 			);
