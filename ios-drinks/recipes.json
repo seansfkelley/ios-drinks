@@ -1040,6 +1040,41 @@
       }
     ],
     "instructions": "Arrange rosemary into a wreath at the bottom of a rocks glass and add Chartreuse. Shake remaining ingredients with ice. Flame misted Chartreuse into the glass and \"cook\" the rosemary slightly. Pour the shaker over the rosemary to douse the flames and top with crushed ice. Garnish with a sprig of rosemary.",
+    "source": "Small Screen",
     "url": "http://www.smallscreennetwork.com/video/499/raising_the_bar_rubicon"
+  },
+  {
+    "name": "Lemon Basil Blossom",
+    "ingredients": [
+      {
+        "tag": "basil",
+        "displayMeasure": "3-4",
+        "displayIngredient": "lemon basil leaves"
+      },
+      {
+        "tag": "lemon",
+        "displayMeasure": "1",
+        "displayIngredient": "lemon, zested"
+      },
+      {
+        "tag": "lemon juice",
+        "displayMeasure": "1 oz",
+        "displayIngredient": "lemon juice"
+      },
+      {
+        "tag": "white rum",
+        "displayMeasure": "1 1/2 oz",
+        "displayIngredient": "white rum"
+      },
+      {
+        "tag": "simple syrup",
+        "displayMeasure": "1/2 oz",
+        "displayIngredient": "lemon basil simple syrup"
+      }
+    ],
+    "instructions": "In a Collins glass, muddle the lemon zest and basil. Fill with crushed ice. In an ice-filled cocktail shaker, shake together rum, lemon juice, and simple syrup. Strain into Collins glass and garnish with a sliver of lemon.",
+    "notes": "To make the lemon basil simple syrup, use 4 parts sugar and 4 parts water to 1 part (loosely packed) basil leaves.",
+    "source": "Saveur",
+    "url": "http://www.saveur.com/article/Recipes/Lemon-Basil-Blossom-Cocktail"
   }
 ]

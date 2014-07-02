@@ -239,23 +239,21 @@
     "tag"     : "pimms"
   },
   {
-    "display" : "Rosemary",
-    "tag"     : "rosemary"
+    "display" : "Rosemary"
   },
   {
-    "display" : "Basil",
-    "tag"     : "basil"
+    "display" : "Basil"
   },
   {
-    "display" : "Shiso",
-    "tag"     : "shiso"
+    "display" : "Shiso"
   },
   {
-    "display" : "Cucumber",
-    "tag"     : "cucumber"
+    "display" : "Cucumber"
   },
   {
-    "display" : "Thyme",
-    "tag"     : "thyme"
+    "display" : "Thyme"
+  },
+  {
+    "display" : "Lemon"
   }
 ]
