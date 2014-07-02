@@ -8,13 +8,17 @@
 
 import Foundation
 
-class Ingredient {
+class Ingredient: Hashable, Equatable {
     let displayName: String = ""
     let tag: String = ""
     let genericTag: String? = nil
     let isHidden: Bool = false
 
     var isGeneric: Bool = false
+
+    var hashValue: Int {
+        return self.tag.hashValue // Ingredients must have unique tags, so we can use it as the hash.
+    }
 
     init(displayName: String, tag: String, genericTag: String? = nil, isHidden: Bool = false) {
         self.displayName = displayName
@@ -38,4 +42,8 @@ class Ingredient {
             self.isHidden = isHidden
         }
     }
+}
+
+func ==(a: Ingredient, b: Ingredient) -> Bool {
+    return a.tag == b.tag
 }

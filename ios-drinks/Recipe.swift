@@ -22,8 +22,7 @@ class Recipe {
     let sourceName: String?
     let sourceUrl: String?
 
-    var rawIngredients: Ingredient[] {
-    get {
+    var unmeasuredIngredients: Ingredient[] {
         return self.measuredIngredients.filter({
             if let _ = $0.ingredient {
                 return true
@@ -33,7 +32,18 @@ class Recipe {
         }).map { $0.ingredient! }
     }
 
-    set { /* readonly */ }
+    var ingredientTags: String[] {
+        return self.unmeasuredIngredients.map { $0.tag }
+    }
+
+    var genericIngredientTags: String[] {
+        return self.unmeasuredIngredients.filter({
+            if let _ = $0.genericTag {
+                return true
+            } else {
+                return false
+            }
+        }).map { $0.genericTag! }
     }
 
     init(name: String, measuredIngredients: MeasuredIngredient[], instructions: String, isCustom: Bool = false, notes: String?, sourceName: String?, sourceUrl: String?) {

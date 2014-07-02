@@ -8,13 +8,13 @@
 
 import Foundation
 
-let INSTANCE = SelectedIngredients()
+let _SelectedIngredients_INSTANCE = SelectedIngredients()
 
 // lololol dedicated wrapper class to expose global singleton. <3 iOS development.
 class SelectedIngredients {
-    var set: Set<String> = Set()
+    var set: Set<Ingredient> = Set()
 
     class func instance() -> SelectedIngredients {
-        return INSTANCE
+        return _SelectedIngredients_INSTANCE
     }
 }

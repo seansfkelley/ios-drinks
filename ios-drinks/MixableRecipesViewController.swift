@@ -11,7 +11,7 @@ import UIKit
 class MixableRecipesViewController : AbstractRecipesViewController {
     override var recipes: RecipeSearchResult[] {
         let index = RecipeIndex.instance()
-        return index.allRecipes.map { index.generateDummySearchResultFor($0) }
+        return index.allRecipes.map { RecipeIndex.generateDummySearchResultFor($0) }
     }
 
     // pragma mark UITableViewDataSource
