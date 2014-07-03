@@ -115,4 +115,22 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
         self.tableView.reloadData()
     }
 
+    // pragma mark Navigation
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject) {
+        // http://stackoverflow.com/questions/15414146/uitableview-prepareforsegue-assigning-indexpath-to-sender
+
+        var controller = UIUtils.actualTargetViewControllerForSegue(segue)
+
+        if controller.isKindOfClass(PagingRecipeViewController.self) {
+            let pagingController = controller as PagingRecipeViewController
+            let indexPath = self.tableView.indexPathForSelectedRow()
+
+            pagingController.allRecipeResults = self.manager!.sortedItems
+            pagingController.currentResultIndex = self.manager!.sortedIndexForIndexPath(indexPath)
+
+        } else {
+            assert(false, "Unknown segue. All segues must be handled.")
+        }
+    }
 }

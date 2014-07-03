@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
-        <!--Browse All Recipes View Controller - Browse All-->
+        <!--Browse All Recipes View Controller - Ingredients-->
         <scene sceneID="DWR-oe-Evp">
             <objects>
                 <tableViewController id="vl9-yj-6o3" customClass="BrowseAllRecipesViewController" customModule="ios_drinks" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,9 +32,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="bLM-Hf-6td" kind="push" id="pK1-R6-dHb"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -42,13 +39,13 @@
                             <outlet property="delegate" destination="vl9-yj-6o3" id="Wcn-9Y-t6m"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Browse All" id="RTx-TB-jK0"/>
+                    <navigationItem key="navigationItem" title="Ingredients" id="RTx-TB-jK0"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dP9-9l-Obl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1268" y="724"/>
         </scene>
-        <!--Segmented Recipe View Controller-->
+        <!--Segmented Recipe View Controller - Recipes-->
         <scene sceneID="9At-Kl-163">
             <objects>
                 <viewController id="A63-LD-IWN" customClass="SegmentedRecipeViewController" customModule="ios_drinks" customModuleProvider="target" sceneMemberID="viewController">
@@ -104,6 +101,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="bLM-Hf-6td" kind="push" id="zL7-5D-PDA"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -114,7 +114,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="s7R-93-Yh8"/>
+                    <navigationItem key="navigationItem" title="Recipes" id="s7R-93-Yh8"/>
                     <connections>
                         <outlet property="segmentedControl" destination="MPR-nX-zKR" id="39X-uZ-Wvq"/>
                         <outlet property="tableView" destination="az5-3B-bbb" id="bJx-Ze-EIL"/>
@@ -184,7 +184,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rgp-Kd-iRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4320" y="1018"/>
+            <point key="canvasLocation" x="2384" y="1050"/>
         </scene>
         <!--Paging Recipe View Controller-->
         <scene sceneID="2cn-en-Zof">
@@ -195,7 +195,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2oe-kJ-dKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1814" y="724"/>
+            <point key="canvasLocation" x="1814" y="1478"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yH4-57-ZKr">
@@ -216,11 +216,11 @@
             </objects>
             <point key="canvasLocation" x="134" y="1092"/>
         </scene>
-        <!--Navigation Controller - Browse-->
+        <!--Navigation Controller - Ingredients-->
         <scene sceneID="pKR-rw-OeM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FCO-Wx-pRz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Browse" id="Q5t-z9-Ykf"/>
+                    <tabBarItem key="tabBarItem" title="Ingredients" id="Q5t-z9-Ykf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N7D-ZK-7YZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -235,11 +235,11 @@
             </objects>
             <point key="canvasLocation" x="732" y="724"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - Recipes-->
         <scene sceneID="Qdq-ss-oW0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ap9-To-Ut6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="S3j-lg-mM7"/>
+                    <tabBarItem key="tabBarItem" title="Recipes" id="S3j-lg-mM7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jpd-De-Ceo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
