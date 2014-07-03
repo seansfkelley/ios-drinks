@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Segmented Recipe View Controller - Recipes-->
@@ -36,34 +37,45 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESn-vU-9XK">
-                                                    <rect key="frame" x="15" y="27" width="31" height="20"/>
+                                                    <rect key="frame" x="105" y="27" width="31" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fba-p6-PkO">
-                                                    <rect key="frame" x="15" y="47" width="40" height="14"/>
+                                                    <rect key="frame" x="105" y="47" width="40" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle Aside" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjb-Xu-Scs">
-                                                    <rect key="frame" x="58" y="47" width="72" height="14"/>
+                                                    <rect key="frame" x="148" y="47" width="72" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ic1-ug-GEA">
+                                                    <rect key="frame" x="15" y="6" width="75" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Ic1-ug-GEA" secondAttribute="height" multiplier="1:1" id="lW7-Gp-CXR"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="ESn-vU-9XK" firstAttribute="leading" secondItem="Ic1-ug-GEA" secondAttribute="trailing" constant="15" id="6eQ-WU-yJX"/>
+                                                <constraint firstItem="Ic1-ug-GEA" firstAttribute="top" secondItem="Mh4-fw-qgy" secondAttribute="top" constant="6" id="Ija-WY-e1B"/>
                                                 <constraint firstItem="qjb-Xu-Scs" firstAttribute="centerY" secondItem="fba-p6-PkO" secondAttribute="centerY" id="IsA-Ru-ILa"/>
+                                                <constraint firstAttribute="centerY" secondItem="Ic1-ug-GEA" secondAttribute="centerY" id="NEg-4Q-Jdq"/>
                                                 <constraint firstItem="ESn-vU-9XK" firstAttribute="top" secondItem="Mh4-fw-qgy" secondAttribute="top" constant="27" id="Qc3-Ox-bZo"/>
+                                                <constraint firstItem="Ic1-ug-GEA" firstAttribute="leading" secondItem="Mh4-fw-qgy" secondAttribute="leading" constant="15" id="RyC-qK-U0N"/>
                                                 <constraint firstItem="qjb-Xu-Scs" firstAttribute="leading" secondItem="fba-p6-PkO" secondAttribute="trailing" constant="3" id="TCq-Ke-a4f"/>
                                                 <constraint firstItem="ESn-vU-9XK" firstAttribute="baseline" secondItem="fba-p6-PkO" secondAttribute="top" constant="-5" id="aa8-8b-UhS"/>
-                                                <constraint firstItem="ESn-vU-9XK" firstAttribute="leading" secondItem="Mh4-fw-qgy" secondAttribute="leading" constant="15" id="gmF-bc-nkX"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ic1-ug-GEA" secondAttribute="bottom" constant="6" id="kQB-x1-olF"/>
                                                 <constraint firstItem="fba-p6-PkO" firstAttribute="leading" secondItem="ESn-vU-9XK" secondAttribute="leading" id="qcO-hT-MaQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="recipeImageView" destination="Ic1-ug-GEA" id="jVd-1A-dXt"/>
                                             <outlet property="subtitleAsideLabel" destination="qjb-Xu-Scs" id="tQ3-0q-lXG"/>
                                             <outlet property="subtitleLabel" destination="fba-p6-PkO" id="4i0-ei-rtb"/>
                                             <outlet property="titleLabel" destination="ESn-vU-9XK" id="ha5-5K-M6J"/>
@@ -117,7 +129,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1264" y="1478"/>
+            <point key="canvasLocation" x="1263" y="1471"/>
         </scene>
         <!--Recipe Detail View Controller-->
         <scene sceneID="imD-QV-2Z7">

@@ -37,6 +37,7 @@ struct MixableConfiguration: DisplayModeConfiguration {
             cell.subtitleAsideLabel.hidden = false
             cell.subtitleAsideLabel.text = "(\(recipeResult.missingIngredients.count) missing)"
         }
+        cell.recipeImageView.image = UIImage(named: "DefaultRecipeImage")
     }
 }
 
@@ -49,6 +50,7 @@ struct AllConfiguration: DisplayModeConfiguration {
         cell.titleLabel.text = recipe.name
         cell.subtitleLabel.text = "\(recipe.measuredIngredients.count) ingredients"
         cell.subtitleAsideLabel.hidden = true
+        cell.recipeImageView.image = UIImage(named: "DefaultRecipeImage")
     }
 }
 

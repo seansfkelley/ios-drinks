@@ -12,4 +12,5 @@ class RecipeTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel
     @IBOutlet var subtitleLabel: UILabel
     @IBOutlet var subtitleAsideLabel: UILabel
+    @IBOutlet var recipeImageView: UIImageView
 }
