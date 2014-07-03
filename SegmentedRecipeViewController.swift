@@ -61,7 +61,6 @@ let _DISPLAY_MODE_TO_CONFIGURATION: Dictionary<RecipeDisplayMode, DisplayModeCon
     .MIXABLE: MixableConfiguration()
 ]
 let _SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER = "RecipePrototypeCell"
-let _SegmentedRecipeViewController_ROW_HEIGHT = 88.0
 
 class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIToolbarDelegate, UISearchBarDelegate {
     var manager: AlphabeticalTableSectionManager<RecipeSearchResult>!
