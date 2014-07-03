@@ -29,7 +29,7 @@
 		78C1C692194D66DB00469918 /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 78C1C691194D66DB00469918 /* recipes.json */; };
 		78C1C694194D68E700469918 /* exceptionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C1C693194D68E700469918 /* exceptionUtils.swift */; };
 		78C1DD0E195BFD5E0077C029 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C1DD0D195BFD5E0077C029 /* UIUtils.swift */; };
-		78C1DD10195BFEB90077C029 /* SelectedIngredientTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C1DD0F195BFEB90077C029 /* SelectedIngredientTags.swift */; };
+		78C1DD10195BFEB90077C029 /* SelectedIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C1DD0F195BFEB90077C029 /* SelectedIngredient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +76,7 @@
 		78C1C691194D66DB00469918 /* recipes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
 		78C1C693194D68E700469918 /* exceptionUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = exceptionUtils.swift; sourceTree = "<group>"; };
 		78C1DD0D195BFD5E0077C029 /* UIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
-		78C1DD0F195BFEB90077C029 /* SelectedIngredientTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedIngredientTags.swift; sourceTree = "<group>"; };
+		78C1DD0F195BFEB90077C029 /* SelectedIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedIngredient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				789CA6B719422D2A00CB4853 /* RecipeIndex.swift */,
-				78C1DD0F195BFEB90077C029 /* SelectedIngredientTags.swift */,
+				78C1DD0F195BFEB90077C029 /* SelectedIngredient.swift */,
 			);
 			name = search;
 			path = ..;
@@ -332,7 +332,7 @@
 				787D0DB5194A882800229C76 /* RecipeSearchResult.swift in Sources */,
 				789CA69819419DEB00CB4853 /* AppDelegate.swift in Sources */,
 				78592B3919622C8000BCEA1B /* SegmentedRecipeViewController.swift in Sources */,
-				78C1DD10195BFEB90077C029 /* SelectedIngredientTags.swift in Sources */,
+				78C1DD10195BFEB90077C029 /* SelectedIngredient.swift in Sources */,
 				789CA6BC19422D5E00CB4853 /* Ingredient.swift in Sources */,
 				78C1C694194D68E700469918 /* exceptionUtils.swift in Sources */,
 				7814F365194E9331007E3DC7 /* RecipeDetailViewController.swift in Sources */,

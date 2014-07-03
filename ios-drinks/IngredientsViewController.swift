@@ -10,10 +10,10 @@ import UIKit
 
 let _IngredientsViewController_PROTOTYPE_CELL_IDENTIFIER = "IngredientPrototypeCell"
 
-class IngredientsViewController: UITableViewController {
+class IngredientsViewController: UITableViewController, UIActionSheetDelegate {
     var manager: AlphabeticalTableSectionManager<Ingredient>!
 
-//    @IBOutlet var resetButton: UIButton
+    @IBOutlet var resetButton: UIBarButtonItem
 
     override func viewDidLoad()  {
         super.viewDidLoad()
@@ -73,5 +73,25 @@ class IngredientsViewController: UITableViewController {
         }
 
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+    }
+
+    // pragma mark Reset button
+
+    @IBAction func resetIngredients() {
+        // http://stackoverflow.com/questions/24198233/exc-bad-access-when-trying-to-init-uiactionsheet-in-swift
+        var actionSheet = UIActionSheet()
+        actionSheet.delegate = self
+        actionSheet.addButtonWithTitle("Reset Ingredients")
+        actionSheet.destructiveButtonIndex = 0
+        actionSheet.addButtonWithTitle("Cancel")
+        actionSheet.cancelButtonIndex = 1
+        actionSheet.showFromBarButtonItem(self.resetButton, animated: true)
+    }
+
+    func actionSheet(actionSheet: UIActionSheet, willDismissWithButtonIndex buttonIndex: Int) {
+        if buttonIndex != actionSheet.cancelButtonIndex {
+            SelectedIngredients.instance().set = Set()
+            self.tableView.reloadData()
+        }
     }
 }
