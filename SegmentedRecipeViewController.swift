@@ -9,14 +9,50 @@
 import UIKit
 
 enum RecipeDisplayMode: String {
-    case MIXABLE = "Mixable"
     case ALL = "All"
+    case MIXABLE = "Mixable"
 }
 
-let DISPLAY_MODE_ORDERING: RecipeDisplayMode[] = [ .ALL, .MIXABLE ]
+protocol DisplayModeConfiguration {
+    var recipes: RecipeSearchResult[] { get }
 
-// TODO: Class variable, when Swift supports it.
-var _PROTOTYPE_CELL_IDENTIFIER = "RecipePrototypeCell"
+    func styleTableCell(cell: UITableViewCell, recipeResult: RecipeSearchResult)
+}
+
+struct MixableConfiguration: DisplayModeConfiguration {
+    var recipes: RecipeSearchResult[] {
+        return RecipeIndex.instance().getFuzzyMixableRecipes(SelectedIngredients.instance().set)
+    }
+
+    func styleTableCell(cell: UITableViewCell, recipeResult: RecipeSearchResult) {
+        let recipe = recipeResult.recipe
+
+        cell.textLabel.text = recipe.name
+        if recipeResult.missingIngredients.count == 0 {
+            cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients"
+        } else {
+            cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients (\(recipeResult.missingIngredients) missing)"
+        }
+    }
+}
+
+struct AllConfiguration: DisplayModeConfiguration {
+    var recipes: RecipeSearchResult[] = RecipeIndex.instance().allRecipes.map { RecipeIndex.generateDummySearchResultFor($0) }
+
+    func styleTableCell(cell: UITableViewCell, recipeResult: RecipeSearchResult) {
+        let recipe = recipeResult.recipe
+
+        cell.textLabel.text = recipe.name
+        cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients"
+    }
+}
+
+let _DISPLAY_MODE_ORDERING: RecipeDisplayMode[] = [ .ALL, .MIXABLE ]
+let _PROTOTYPE_CELL_IDENTIFIER = "RecipePrototypeCell"
+let _DISPLAY_MODE_TO_CONFIGURATION: Dictionary<RecipeDisplayMode, DisplayModeConfiguration> = [
+    .ALL: AllConfiguration(),
+    .MIXABLE: MixableConfiguration()
+]
 
 class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var manager: AlphabeticalTableSectionManager<RecipeSearchResult>?
@@ -30,7 +66,7 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
         super.viewDidLoad()
 
         self.segmentedControl.removeAllSegments()
-        for mode in DISPLAY_MODE_ORDERING {
+        for mode in _DISPLAY_MODE_ORDERING {
             self.segmentedControl.insertSegmentWithTitle(mode.toRaw(), atIndex: self.segmentedControl.numberOfSegments, animated: false)
         }
 
@@ -50,10 +86,8 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(_PROTOTYPE_CELL_IDENTIFIER) as UITableViewCell
-        let recipe = self.manager!.objectAtIndexPath(indexPath).recipe
 
-        cell.textLabel.text = recipe.name
-        cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients"
+        _DISPLAY_MODE_TO_CONFIGURATION[self._displayMode]!.styleTableCell(cell, recipeResult: self.manager!.objectAtIndexPath(indexPath))
 
         return cell
     }
@@ -73,16 +107,9 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     // pragma mark UISegmentControl actions
 
     @IBAction func indexChanged() {
-        self._displayMode = DISPLAY_MODE_ORDERING[self.segmentedControl.selectedSegmentIndex]
+        self._displayMode = _DISPLAY_MODE_ORDERING[self.segmentedControl.selectedSegmentIndex]
 
-        var recipes: RecipeSearchResult[]
-        switch (self._displayMode) {
-        case .ALL:
-            recipes = RecipeIndex.instance().allRecipes.map { RecipeIndex.generateDummySearchResultFor($0) }
-        case .MIXABLE:
-            recipes = RecipeIndex.instance().getFuzzyMixableRecipes(SelectedIngredients.instance().set)
-        }
-        
+        var recipes = _DISPLAY_MODE_TO_CONFIGURATION[self._displayMode]!.recipes
         self.manager = AlphabeticalTableSectionManager<RecipeSearchResult>(items: recipes, titleExtractor: { $0.recipe.name })
 
         self.tableView.reloadData()
