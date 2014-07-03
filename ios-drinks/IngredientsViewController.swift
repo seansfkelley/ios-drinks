@@ -11,7 +11,7 @@ import UIKit
 let _IngredientsViewController_PROTOTYPE_CELL_IDENTIFIER = "IngredientPrototypeCell"
 
 class IngredientsViewController: UITableViewController {
-    var manager: AlphabeticalTableSectionManager<Ingredient>?
+    var manager: AlphabeticalTableSectionManager<Ingredient>!
 
 //    @IBOutlet var resetButton: UIButton
 
@@ -25,16 +25,16 @@ class IngredientsViewController: UITableViewController {
 
     // This is highly duplicated in any other class that uses the Alphabetical manager. How to factor out?
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-        return self.manager!.orderedSections.count
+        return self.manager.orderedSections.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.manager!.orderedSections[section].count
+        return self.manager.orderedSections[section].count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(_IngredientsViewController_PROTOTYPE_CELL_IDENTIFIER) as UITableViewCell
-        let ingredient = self.manager!.objectAtIndexPath(indexPath)
+        let ingredient = self.manager.objectAtIndexPath(indexPath)
 
         cell.textLabel.text = ingredient.displayName
         if SelectedIngredients.instance().set[ingredient] {
@@ -47,15 +47,15 @@ class IngredientsViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
-        return self.manager!.orderedSectionTitles[section]
+        return self.manager.orderedSectionTitles[section]
     }
 
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> AnyObject[] {
-        return self.manager!.allSectionIndexTitles
+        return self.manager.allSectionIndexTitles
     }
 
     override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
-        return self.manager!.sectionForSectionIndexTitle(title)
+        return self.manager.sectionForSectionIndexTitle(title)
     }
 
     // pragma mark Table view delegate

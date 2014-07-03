@@ -60,7 +60,7 @@ let _DISPLAY_MODE_TO_CONFIGURATION: Dictionary<RecipeDisplayMode, DisplayModeCon
 let _SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER = "RecipePrototypeCell"
 
 class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    var manager: AlphabeticalTableSectionManager<RecipeSearchResult>?
+    var manager: AlphabeticalTableSectionManager<RecipeSearchResult>!
 
     @IBOutlet var segmentedControl: UISegmentedControl
     @IBOutlet var tableView: UITableView
@@ -82,11 +82,11 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     // pragma mark UITableViewDataSource
 
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-        return self.manager!.orderedSections.count
+        return self.manager.orderedSections.count
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.manager!.orderedSections[section].count
+        return self.manager.orderedSections[section].count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell {
@@ -98,15 +98,15 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
-        return self.manager!.orderedSectionTitles[section]
+        return self.manager.orderedSectionTitles[section]
     }
 
     func sectionIndexTitlesForTableView(tableView: UITableView) -> AnyObject[] {
-        return self.manager!.allSectionIndexTitles
+        return self.manager.allSectionIndexTitles
     }
 
     func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
-        return self.manager!.sectionForSectionIndexTitle(title)
+        return self.manager.sectionForSectionIndexTitle(title)
     }
 
     // pragma mark UISegmentControl actions

@@ -98,15 +98,19 @@ class RecipeIndex {
     }
 
     func saveTransientState() {
-//        // This crashes the compiler if I un-inline the set-array-map. Wow.
-//        NSUserDefaults.standardUserDefaults().setObject(SelectedIngredients.instance().set.toArray().map({ $0.tag }), forKey: _RecipeIndex_SELECTED_INGREDIENTS_KEY)
+        // This crashes the compiler if I un-inline the set-array-map. Wow.
+        NSUserDefaults.standardUserDefaults().setObject(SelectedIngredients.instance().set.toArray().map({ $0.tag }), forKey: _RecipeIndex_SELECTED_INGREDIENTS_KEY)
     }
 
     func loadTransientState() {
-        var selectedIngredientTags = Set(array: NSUserDefaults.standardUserDefaults().objectForKey(_RecipeIndex_SELECTED_INGREDIENTS_KEY) as String[])
-        for ingredient in self.allIngredients {
-            if selectedIngredientTags[ingredient.tag] {
-                SelectedIngredients.instance().set.put(ingredient)
+        // http://stackoverflow.com/questions/24032863/swift-and-nsuserdefaults-exc-bad-instruction-when-user-defaults-empty
+        var savedTags: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey(_RecipeIndex_SELECTED_INGREDIENTS_KEY) // Explicitly declare as AnyObject? to avoid implicit unwrapping and crashing on startup.
+        if let resolvedSavedTags = savedTags as? String[] {
+            var selectedIngredientTags = Set(array: resolvedSavedTags as String[])
+            for ingredient in self.allIngredients {
+                if selectedIngredientTags[ingredient.tag] {
+                    SelectedIngredients.instance().set.put(ingredient)
+                }
             }
         }
     }
