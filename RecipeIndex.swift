@@ -29,6 +29,10 @@ let _RecipeIndex_INGREDIENTS = loadJSONArrayFromPath(NSBundle.mainBundle().pathF
 
 let _RecipeIndex_FUZZY_MATCH_COUNT = 2
 
+let _RecipeIndex_DATA_FILE_PATH = "\(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])/custom-drinks.dat"
+
+let _RecipeIndex_SELECTED_INGREDIENTS_KEY = "selected-ingredients"
+
 class RecipeIndex {
     let allIngredients = _RecipeIndex_INGREDIENTS
     let allRecipes: Recipe[]
@@ -93,36 +97,25 @@ class RecipeIndex {
         return sort(result) { $0.recipe.name < $1.recipe.name }
     }
 
-    // Do we even need these functions anymore?
-    /*
-    func groupByMissingIngredients(availableIngredients: Set<Ingredient>) -> Dictionary<Int, RecipeSearchResult[]> {
-        return self._groupByMissingIngredients(availableIngredients)
+    func saveTransientState() {
+//        // This crashes the compiler if I un-inline the set-array-map. Wow.
+//        NSUserDefaults.standardUserDefaults().setObject(SelectedIngredients.instance().set.toArray().map({ $0.tag }), forKey: _RecipeIndex_SELECTED_INGREDIENTS_KEY)
     }
 
-    func _groupByMissingIngredients(availableIngredients: Set<Ingredient>) -> Dictionary<Int, RecipeSearchResult[]> {
-        var genericTags = availableIngredients.map { $0.genericTag }
-        var allTags = availableIngredients.map { $0.tag }
-        allTags.put(genericTags)
-
-        var grouped = Dictionary<Int, RecipeSearchResult[]>()
-        for i in 0..._RecipeIndex_FUZZY_MATCH_COUNT { // Inclusive.
-            grouped[i] = []
-        }
-
-        for r in self.allRecipes {
-            var recipeGenericTags = Set(array: r.genericIngredientTags)
-            var missingCount = (recipeGenericTags - genericTags).count
-            if missingCount <= _RecipeIndex_FUZZY_MATCH_COUNT && missingCount != recipeGenericTags.count {
-                var group = grouped[missingCount]! // Can't one-line this for some reason.
-                group.append(RecipeIndex.generateRecipeSearchResultFor(r, withAvailableTags: allTags))
+    func loadTransientState() {
+        var selectedIngredientTags = Set(array: NSUserDefaults.standardUserDefaults().objectForKey(_RecipeIndex_SELECTED_INGREDIENTS_KEY) as String[])
+        for ingredient in self.allIngredients {
+            if selectedIngredientTags[ingredient.tag] {
+                SelectedIngredients.instance().set.put(ingredient)
             }
         }
-
-        for i in 0..._RecipeIndex_FUZZY_MATCH_COUNT {
-            grouped[i] = sort(grouped[i]!, { $0.recipe.name < $1.recipe.name })
-        }
-
-        return grouped
     }
-    */
+
+    func savePermanentState() {
+        // Save any custom recipes.
+    }
+
+    func loadPermanentState() {
+        // Load up any custom recipes.
+    }
 }
