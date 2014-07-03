@@ -61,11 +61,13 @@ let _DISPLAY_MODE_TO_CONFIGURATION: Dictionary<RecipeDisplayMode, DisplayModeCon
     .MIXABLE: MixableConfiguration()
 ]
 let _SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER = "RecipePrototypeCell"
+let _SegmentedRecipeViewController_ROW_HEIGHT = 88.0
 
-class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIToolbarDelegate {
+class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIToolbarDelegate, UISearchBarDelegate {
     var manager: AlphabeticalTableSectionManager<RecipeSearchResult>!
 
     @IBOutlet var segmentedControl: UISegmentedControl
+    @IBOutlet var searchBar: UISearchBar
     @IBOutlet var tableView: UITableView
 
     var _displayMode = RecipeDisplayMode.ALL // Tagged class. Fuck iOS and how fucking hard it is to just have a view controller that swaps out other fucking view controllers.
@@ -118,17 +120,19 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
         return .TopAttached
     }
 
-    // pragma mark UISegmentControl actions
+    // pragma mark UISegmentedControl actions
 
     @IBAction func indexChanged() {
         self._displayMode = _DISPLAY_MODE_ORDERING[self.segmentedControl.selectedSegmentIndex]
+        self.searchBar.text = ""
+        self.searchBar.resignFirstResponder()
+        self._reloadDataRespectingSearchText()
+    }
 
-        var recipes = _DISPLAY_MODE_TO_CONFIGURATION[self._displayMode]!.recipes
-        self.manager = AlphabeticalTableSectionManager<RecipeSearchResult>(items: recipes, titleExtractor: { $0.recipe.name })
+    // pragma mark UISearchBarDelegate
 
-        self.tableView.reloadData()
-
-        self.tableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: false)
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        self._reloadDataRespectingSearchText()
     }
 
     // pragma mark Navigation
@@ -148,5 +152,18 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
         } else {
             assert(false, "Unknown segue. All segues must be handled.")
         }
+    }
+
+    // pragma mark Miscellaneous
+
+    func _reloadDataRespectingSearchText() {
+        var recipes = _DISPLAY_MODE_TO_CONFIGURATION[self._displayMode]!.recipes
+
+        if !self.searchBar.text.isEmpty {
+            recipes = recipes.filter(RecipeIndex.generateSearchTextFilterFunction(self.searchBar.text))
+        }
+
+        self.manager = AlphabeticalTableSectionManager(items: recipes, titleExtractor: { $0.recipe.name })
+        self.tableView.reloadData()
     }
 }

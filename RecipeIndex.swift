@@ -79,6 +79,22 @@ class RecipeIndex {
         return RecipeSearchResult(recipe: recipe, availableIngredients: available, substituteIngredients: substitutes, missingIngredients: missing)
     }
 
+    class func generateSearchTextFilterFunction(searchText: String) -> (RecipeSearchResult) -> Bool {
+        let searchTextPredicate = NSPredicate(format: "self contains[cd] %@", searchText)
+        return { (recipeResult: RecipeSearchResult) -> Bool in
+            if searchTextPredicate.evaluateWithObject(recipeResult.recipe.name) {
+                return true
+            } else {
+                for ingredient in recipeResult.recipe.unmeasuredIngredients {
+                    if searchTextPredicate.evaluateWithObject(ingredient.displayName) {
+                        return true
+                    }
+                }
+            }
+            return false
+        }
+    }
+
     func getFuzzyMixableRecipes(availableIngredients: Set<Ingredient>) -> RecipeSearchResult[] {
         var mostGenericTags = availableIngredients.map { $0.mostGenericTag }
         var allTags = availableIngredients.map { $0.tag }
