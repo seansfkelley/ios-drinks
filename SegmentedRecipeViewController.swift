@@ -83,6 +83,12 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
         self.indexChanged()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        // http://stackoverflow.com/questions/19379510/uitableviewcell-doesnt-get-deselected-when-swiping-back-quickly
+        // In addition to fixing the above, also serves to deselect it under normal circumstances.
+        self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow(), animated: animated)
+    }
+
     // pragma mark UITableViewDataSource
 
     func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
@@ -145,9 +151,14 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
             let pagingController = controller as PagingRecipeViewController
             let indexPath = self.tableView.indexPathForSelectedRow()
 
-            pagingController.allRecipeResults = self.manager!.sortedItems
-            pagingController.currentResultIndex = self.manager!.sortedIndexForIndexPath(indexPath)
+            pagingController.allRecipeResults = self.manager.sortedItems
+            pagingController.currentResultIndex = self.manager.sortedIndexForIndexPath(indexPath)
+        } else if controller.isKindOfClass(RecipeDetailViewController.self) {
+            let recipeController = controller as RecipeDetailViewController
+            let indexPath = self.tableView.indexPathForSelectedRow()
 
+            recipeController.allRecipeResults = self.manager.sortedItems
+            recipeController.currentResultIndex = self.manager.sortedIndexForIndexPath(indexPath)
         } else {
             assert(false, "Unknown segue. All segues must be handled.")
         }
