@@ -8,6 +8,5 @@
 
 import UIKit
 
-class RecipeDetailViewController2: UIViewController {
-
+class RecipeDetailViewController2: RecipeDetailPageViewController {
 }

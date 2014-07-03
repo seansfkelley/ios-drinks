@@ -8,6 +8,6 @@
 
 import UIKit
 
-class RecipeSourceViewController: UIViewController {
+class RecipeSourceViewController: RecipeDetailPageViewController {
     @IBOutlet var webView: UIWebView
 }

@@ -8,10 +8,8 @@
 
 import UIKit
 
-class RecipeImageViewController: UIViewController {
+class RecipeImageViewController: RecipeDetailPageViewController {
     @IBOutlet var imageView: UIImageView
-
-    var recipeResult: RecipeSearchResult!
 
     override func viewWillAppear(animated: Bool)  {
         self.imageView.image = UIImage(named: "DefaultRecipeImage")

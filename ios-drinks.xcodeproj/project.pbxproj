@@ -35,6 +35,7 @@
 		78FB76E719660A2F00366B35 /* RecipeImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FB76E619660A2F00366B35 /* RecipeImageViewController.swift */; };
 		78FB76E919660B7000366B35 /* RecipeSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FB76E819660B7000366B35 /* RecipeSourceViewController.swift */; };
 		78FB76EC19660BFA00366B35 /* RecipeDetailViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FB76EB19660BFA00366B35 /* RecipeDetailViewController2.swift */; };
+		78FB76EE19660E5300366B35 /* RecipeDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FB76ED19660E5300366B35 /* RecipeDetailPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		78FB76E619660A2F00366B35 /* RecipeImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeImageViewController.swift; sourceTree = "<group>"; };
 		78FB76E819660B7000366B35 /* RecipeSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeSourceViewController.swift; sourceTree = "<group>"; };
 		78FB76EB19660BFA00366B35 /* RecipeDetailViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController2.swift; sourceTree = "<group>"; };
+		78FB76ED19660E5300366B35 /* RecipeDetailPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				7814F369195A95AB007E3DC7 /* PagingRecipeViewController.swift */,
+				78FB76ED19660E5300366B35 /* RecipeDetailPageViewController.swift */,
 				78FB76E619660A2F00366B35 /* RecipeImageViewController.swift */,
 				78FB76EB19660BFA00366B35 /* RecipeDetailViewController2.swift */,
 				78FB76E819660B7000366B35 /* RecipeSourceViewController.swift */,
@@ -370,6 +373,7 @@
 				78592B3919622C8000BCEA1B /* SegmentedRecipeViewController.swift in Sources */,
 				78C1DD10195BFEB90077C029 /* SelectedIngredient.swift in Sources */,
 				789CA6BC19422D5E00CB4853 /* Ingredient.swift in Sources */,
+				78FB76EE19660E5300366B35 /* RecipeDetailPageViewController.swift in Sources */,
 				78C1C694194D68E700469918 /* exceptionUtils.swift in Sources */,
 				7814F365194E9331007E3DC7 /* RecipeDetailViewController.swift in Sources */,
 				78093D8B1964ED5A00E34D0F /* HairlineHidingNavigationController.swift in Sources */,
