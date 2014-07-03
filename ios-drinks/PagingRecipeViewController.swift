@@ -26,14 +26,16 @@ class PagingRecipeViewController: UIPageViewController, UIPageViewControllerData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var detailsController = self.storyboard.instantiateViewControllerWithIdentifier("recipeDetailViewController") as RecipeDetailViewController
-        var blankViewController = self.storyboard.instantiateViewControllerWithIdentifier("blankViewController") as UIViewController
-        detailsController.allRecipeResults = self.allRecipeResults
-        detailsController.currentResultIndex = self.currentResultIndex
+        var imageController = self.storyboard.instantiateViewControllerWithIdentifier("RecipeImageViewController") as RecipeImageViewController // RecipeDetailViewController
+        var detailsController = self.storyboard.instantiateViewControllerWithIdentifier("RecipeDetailViewController") as RecipeDetailViewController2
+        var sourceController = self.storyboard.instantiateViewControllerWithIdentifier("RecipeSourceViewController") as RecipeSourceViewController
+
+//        detailsController.allRecipeResults = self.allRecipeResults
+//        detailsController.currentResultIndex = self.currentResultIndex
 
         self.dataSource = self
 
-        self._allViewControllers = [ detailsController, blankViewController ]
+        self._allViewControllers = [ imageController, detailsController, sourceController]
 
         self.setViewControllers([ detailsController ], direction: .Forward, animated: true, completion: nil)
     }
@@ -61,6 +63,6 @@ class PagingRecipeViewController: UIPageViewController, UIPageViewControllerData
     }
 
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 0
+        return 1
     }
 }
