@@ -18,7 +18,7 @@ enum RecipeDisplayMode: String {
 protocol DisplayModeConfiguration {
     var recipes: RecipeSearchResult[] { get }
 
-    func styleTableCell(cell: UITableViewCell, recipeResult: RecipeSearchResult)
+    func styleTableCell(cell: RecipeTableViewCell, recipeResult: RecipeSearchResult)
 }
 
 struct MixableConfiguration: DisplayModeConfiguration {
@@ -26,14 +26,16 @@ struct MixableConfiguration: DisplayModeConfiguration {
         return RecipeIndex.instance().getFuzzyMixableRecipes(SelectedIngredients.instance().set)
     }
 
-    func styleTableCell(cell: UITableViewCell, recipeResult: RecipeSearchResult) {
+    func styleTableCell(cell: RecipeTableViewCell, recipeResult: RecipeSearchResult) {
         let recipe = recipeResult.recipe
 
-        cell.textLabel.text = recipe.name
+        cell.titleLabel.text = recipe.name
+        cell.subtitleLabel.text = "\(recipe.measuredIngredients.count) ingredients"
         if recipeResult.missingIngredients.count == 0 {
-            cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients"
+            cell.subtitleAsideLabel.hidden = true
         } else {
-            cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients (\(recipeResult.missingIngredients.count) missing)"
+            cell.subtitleAsideLabel.hidden = false
+            cell.subtitleAsideLabel.text = "(\(recipeResult.missingIngredients.count) missing)"
         }
     }
 }
@@ -41,11 +43,12 @@ struct MixableConfiguration: DisplayModeConfiguration {
 struct AllConfiguration: DisplayModeConfiguration {
     var recipes: RecipeSearchResult[] = RecipeIndex.instance().allRecipes.map { RecipeIndex.generateDummySearchResultFor($0) }
 
-    func styleTableCell(cell: UITableViewCell, recipeResult: RecipeSearchResult) {
+    func styleTableCell(cell: RecipeTableViewCell, recipeResult: RecipeSearchResult) {
         let recipe = recipeResult.recipe
 
-        cell.textLabel.text = recipe.name
-        cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients"
+        cell.titleLabel.text = recipe.name
+        cell.subtitleLabel.text = "\(recipe.measuredIngredients.count) ingredients"
+        cell.subtitleAsideLabel.hidden = true
     }
 }
 
@@ -90,7 +93,7 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(_SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(_SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER) as RecipeTableViewCell
 
         _DISPLAY_MODE_TO_CONFIGURATION[self._displayMode]!.styleTableCell(cell, recipeResult: self.manager!.objectAtIndexPath(indexPath))
 
@@ -124,6 +127,8 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
         self.manager = AlphabeticalTableSectionManager<RecipeSearchResult>(items: recipes, titleExtractor: { $0.recipe.name })
 
         self.tableView.reloadData()
+
+        self.tableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: false)
     }
 
     // pragma mark Navigation
