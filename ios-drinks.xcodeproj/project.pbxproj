@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78093D8B1964ED5A00E34D0F /* HairlineHidingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78093D8A1964ED5A00E34D0F /* HairlineHidingNavigationController.swift */; };
 		7814F365194E9331007E3DC7 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7814F364194E9331007E3DC7 /* RecipeDetailViewController.swift */; };
 		7814F367194FF79E007E3DC7 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7814F366194FF79E007E3DC7 /* Set.swift */; };
 		7814F36A195A95AB007E3DC7 /* PagingRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7814F369195A95AB007E3DC7 /* PagingRecipeViewController.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		78093D8A1964ED5A00E34D0F /* HairlineHidingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HairlineHidingNavigationController.swift; sourceTree = "<group>"; };
 		7814F364194E9331007E3DC7 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		7814F366194FF79E007E3DC7 /* Set.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Set.swift; path = ../Set.swift; sourceTree = "<group>"; };
 		7814F369195A95AB007E3DC7 /* PagingRecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingRecipeViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				7814F364194E9331007E3DC7 /* RecipeDetailViewController.swift */,
 				7814F369195A95AB007E3DC7 /* PagingRecipeViewController.swift */,
 				78592B3819622C8000BCEA1B /* SegmentedRecipeViewController.swift */,
+				78093D8A1964ED5A00E34D0F /* HairlineHidingNavigationController.swift */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				789CA6BC19422D5E00CB4853 /* Ingredient.swift in Sources */,
 				78C1C694194D68E700469918 /* exceptionUtils.swift in Sources */,
 				7814F365194E9331007E3DC7 /* RecipeDetailViewController.swift in Sources */,
+				78093D8B1964ED5A00E34D0F /* HairlineHidingNavigationController.swift in Sources */,
 				7814F367194FF79E007E3DC7 /* Set.swift in Sources */,
 				787D0DB3194A816E00229C76 /* Recipe.swift in Sources */,
 			);

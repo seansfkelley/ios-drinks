@@ -16,24 +16,26 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzW-hN-Pag">
-                                <rect key="frame" x="0.0" y="64" width="320" height="52"/>
-                                <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MPR-nX-zKR">
-                                        <rect key="frame" x="20" y="12" width="280" height="29"/>
-                                        <segments>
-                                            <segment title="First"/>
-                                            <segment title="Second"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="indexChanged" destination="A63-LD-IWN" eventType="valueChanged" id="qCs-Fw-Fku"/>
-                                        </connections>
-                                    </segmentedControl>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pcc-WW-3PU">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="RX4-QZ-MkK">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="8VI-YT-esF">
+                                            <rect key="frame" x="16" y="7" width="291" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="First"/>
+                                                <segment title="Second"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="A63-LD-IWN" id="7yi-k8-H8G"/>
+                                </connections>
+                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="az5-3B-bbb">
-                                <rect key="frame" x="0.0" y="116" width="320" height="403"/>
+                                <rect key="frame" x="0.0" y="108" width="320" height="411"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="uVP-gi-iEA">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -75,13 +77,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Recipes" id="s7R-93-Yh8"/>
                     <connections>
-                        <outlet property="segmentedControl" destination="MPR-nX-zKR" id="39X-uZ-Wvq"/>
+                        <outlet property="segmentedControl" destination="8VI-YT-esF" id="8mt-cO-fG5"/>
                         <outlet property="tableView" destination="az5-3B-bbb" id="bJx-Ze-EIL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eo9-4Y-EXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1264" y="1478"/>
+            <point key="canvasLocation" x="1264" y="1477"/>
         </scene>
         <!--Recipe Detail View Controller-->
         <scene sceneID="imD-QV-2Z7">
@@ -143,7 +145,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rgp-Kd-iRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2916" y="1050"/>
+            <point key="canvasLocation" x="2376" y="1050"/>
         </scene>
         <!--Paging Recipe View Controller-->
         <scene sceneID="2cn-en-Zof">
@@ -210,10 +212,10 @@
             </objects>
             <point key="canvasLocation" x="1264" y="660"/>
         </scene>
-        <!--Navigation Controller - Recipes-->
+        <!--Hairline Hiding Navigation Controller - Recipes-->
         <scene sceneID="Qdq-ss-oW0">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ap9-To-Ut6" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ap9-To-Ut6" customClass="HairlineHidingNavigationController" customModule="ios_drinks" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Recipes" id="S3j-lg-mM7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jpd-De-Ceo">

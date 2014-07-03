@@ -59,7 +59,7 @@ let _DISPLAY_MODE_TO_CONFIGURATION: Dictionary<RecipeDisplayMode, DisplayModeCon
 ]
 let _SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER = "RecipePrototypeCell"
 
-class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIToolbarDelegate {
     var manager: AlphabeticalTableSectionManager<RecipeSearchResult>!
 
     @IBOutlet var segmentedControl: UISegmentedControl
@@ -107,6 +107,12 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
 
     func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
         return self.manager.sectionForSectionIndexTitle(title)
+    }
+
+    // pragma mark UIToolbarDelegate
+
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return .TopAttached
     }
 
     // pragma mark UISegmentControl actions
