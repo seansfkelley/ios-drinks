@@ -48,8 +48,8 @@ struct Set<T: Hashable>: Sequence {
     }
 
     mutating func put(element: T?) {
-        if let resolvedElement = element {
-            self._dict[resolvedElement] = true
+        if element {
+            self._dict[element!] = true
         }
     }
 
@@ -72,8 +72,8 @@ struct Set<T: Hashable>: Sequence {
     }
 
     func has(element: T?) -> Bool {
-        if let resolvedElement = element {
-            if let _ = self._dict[resolvedElement] {
+        if element {
+            if self._dict[element!] {
                 return true
             } else {
                 return false
@@ -84,8 +84,8 @@ struct Set<T: Hashable>: Sequence {
     }
 
     mutating func remove(element: T?) {
-        if let resolvedElement = element {
-            self._dict[resolvedElement] = nil
+        if element {
+            self._dict[element!] = nil
         }
     }
 

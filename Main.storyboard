@@ -27,6 +27,9 @@
                                                 <segment title="First"/>
                                                 <segment title="Second"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="indexChanged" destination="A63-LD-IWN" eventType="valueChanged" id="nmf-gx-A0F"/>
+                                            </connections>
                                         </segmentedControl>
                                     </barButtonItem>
                                 </items>
