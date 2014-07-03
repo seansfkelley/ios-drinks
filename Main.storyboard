@@ -4,47 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
-        <!--Browse All Recipes View Controller - Ingredients-->
-        <scene sceneID="DWR-oe-Evp">
-            <objects>
-                <tableViewController id="vl9-yj-6o3" customClass="BrowseAllRecipesViewController" customModule="ios_drinks" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="a0U-bj-bgC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipePrototypeCell" textLabel="IAh-eV-OEK" detailTextLabel="QDh-gs-nd6" style="IBUITableViewCellStyleSubtitle" id="n48-yr-Kby">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n48-yr-Kby" id="RYI-wB-P7U">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IAh-eV-OEK">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QDh-gs-nd6">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="vl9-yj-6o3" id="zxb-mP-07n"/>
-                            <outlet property="delegate" destination="vl9-yj-6o3" id="Wcn-9Y-t6m"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Ingredients" id="RTx-TB-jK0"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dP9-9l-Obl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1268" y="724"/>
-        </scene>
         <!--Segmented Recipe View Controller - Recipes-->
         <scene sceneID="9At-Kl-163">
             <objects>
@@ -184,7 +143,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rgp-Kd-iRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2384" y="1050"/>
+            <point key="canvasLocation" x="2916" y="1050"/>
         </scene>
         <!--Paging Recipe View Controller-->
         <scene sceneID="2cn-en-Zof">
@@ -208,32 +167,48 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="FCO-Wx-pRz" kind="relationship" relationship="viewControllers" id="4MN-ff-xSk"/>
+                        <segue destination="o9b-Cu-gAG" kind="relationship" relationship="viewControllers" id="Bw8-Ik-vua"/>
                         <segue destination="Ap9-To-Ut6" kind="relationship" relationship="viewControllers" id="vde-Kw-AHV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcF-Vh-IM9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134" y="1092"/>
+            <point key="canvasLocation" x="202" y="1058"/>
         </scene>
-        <!--Navigation Controller - Ingredients-->
-        <scene sceneID="pKR-rw-OeM">
+        <!--Ingredients View Controller - Ingredients-->
+        <scene sceneID="pVh-nM-TLQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FCO-Wx-pRz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ingredients" id="Q5t-z9-Ykf"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N7D-ZK-7YZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="vl9-yj-6o3" kind="relationship" relationship="rootViewController" id="d9C-gT-bAB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c1L-E8-SKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="0G0-nG-5MZ" customClass="IngredientsViewController" customModule="ios_drinks" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="H5S-Bl-GJd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientPrototypeCell" textLabel="lZ4-Zt-TUm" style="IBUITableViewCellStyleDefault" id="Hq2-Vi-CLH">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hq2-Vi-CLH" id="O3e-CA-rXX">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lZ4-Zt-TUm">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0G0-nG-5MZ" id="1uM-di-QvX"/>
+                            <outlet property="delegate" destination="0G0-nG-5MZ" id="X4v-bN-42q"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Ingredients" id="VOC-nk-UML"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zqE-ju-5w7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732" y="724"/>
+            <point key="canvasLocation" x="1264" y="660"/>
         </scene>
         <!--Navigation Controller - Recipes-->
         <scene sceneID="Qdq-ss-oW0">
@@ -253,6 +228,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gV-Kr-BYV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="732" y="1478"/>
+        </scene>
+        <!--Navigation Controller - Ingredients-->
+        <scene sceneID="Ldo-up-ClG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o9b-Cu-gAG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Ingredients" id="OgW-E5-tdH"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="37a-xM-X1l">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0G0-nG-5MZ" kind="relationship" relationship="rootViewController" id="YRZ-SM-o4C"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MJE-1I-LDy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="732" y="660"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -13,6 +13,8 @@ enum RecipeDisplayMode: String {
     case MIXABLE = "Mixable"
 }
 
+
+
 protocol DisplayModeConfiguration {
     var recipes: RecipeSearchResult[] { get }
 
@@ -47,18 +49,21 @@ struct AllConfiguration: DisplayModeConfiguration {
     }
 }
 
+
+
+// These really should be class statics, once Swift supports that.
 let _DISPLAY_MODE_ORDERING: RecipeDisplayMode[] = [ .ALL, .MIXABLE ]
-let _PROTOTYPE_CELL_IDENTIFIER = "RecipePrototypeCell"
 let _DISPLAY_MODE_TO_CONFIGURATION: Dictionary<RecipeDisplayMode, DisplayModeConfiguration> = [
     .ALL: AllConfiguration(),
     .MIXABLE: MixableConfiguration()
 ]
+let _SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER = "RecipePrototypeCell"
 
 class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var manager: AlphabeticalTableSectionManager<RecipeSearchResult>?
 
     @IBOutlet var segmentedControl: UISegmentedControl
-    @IBOutlet var tableView : UITableView
+    @IBOutlet var tableView: UITableView
 
     var _displayMode = RecipeDisplayMode.ALL // Tagged class. Fuck iOS and how fucking hard it is to just have a view controller that swaps out other fucking view controllers.
 
@@ -85,7 +90,7 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(_PROTOTYPE_CELL_IDENTIFIER) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(_SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER) as UITableViewCell
 
         _DISPLAY_MODE_TO_CONFIGURATION[self._displayMode]!.styleTableCell(cell, recipeResult: self.manager!.objectAtIndexPath(indexPath))
 
