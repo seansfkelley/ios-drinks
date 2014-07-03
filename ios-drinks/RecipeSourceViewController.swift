@@ -10,4 +10,12 @@ import UIKit
 
 class RecipeSourceViewController: RecipeDetailPageViewController {
     @IBOutlet var webView: UIWebView
+
+    override func viewDidLoad()  {
+        self.webView.scalesPageToFit = true
+    }
+
+    override func viewWillAppear(animated: Bool)  {
+        self.webView.loadRequest(NSURLRequest(URL: NSURL(string: self.recipeResult.recipe.sourceUrl!)))
+    }
 }

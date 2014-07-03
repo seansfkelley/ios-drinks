@@ -47,12 +47,16 @@ class PagingRecipeViewController: UIPageViewController, UIPageViewControllerData
     }
 
     override func viewWillAppear(animated: Bool)  {
+        self.navigationItem.title = self.recipeResult.recipe.name
+
         for controller in self._currentViewControllers {
             controller.recipeResult = self.allRecipeResults[self.currentResultIndex]
         }
 
         self.setViewControllers([ self._detailsController ], direction: .Forward, animated: true, completion: nil)
     }
+
+    // pragma mark UIPageViewControllerDataSource
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         if let i = find(self._currentViewControllers, viewController as RecipeDetailPageViewController) {
