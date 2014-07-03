@@ -74,6 +74,9 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad()  {
         super.viewDidLoad()
 
+        // This is pretty fragile, but whatever.
+        self.tableView.contentInset = UIEdgeInsets(top: self.searchBar.frame.height, left: 0, bottom: 0, right: 0)
+
         self.segmentedControl.removeAllSegments()
         for mode in _DISPLAY_MODE_ORDERING {
             self.segmentedControl.insertSegmentWithTitle(mode.toRaw(), atIndex: self.segmentedControl.numberOfSegments, animated: false)

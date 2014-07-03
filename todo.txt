@@ -1,4 +1,3 @@
 use UITableViewIndexSearch in the table manager to get the search icon
-figure out wtf is up with the sizing and coloration of the recipes table view
 figure out scrolling behavior when switching tables in recipe view
 add search to ingredients view
