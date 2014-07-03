@@ -20,6 +20,14 @@ class Ingredient: Hashable, Equatable {
         return self.tag.hashValue // Ingredients must have unique tags, so we can use it as the hash.
     }
 
+    var mostGenericTag: String {
+        if let resolvedGenericTag = self.genericTag {
+            return resolvedGenericTag
+        } else {
+            return self.tag
+        }
+    }
+
     init(displayName: String, tag: String, genericTag: String? = nil, isHidden: Bool = false) {
         self.displayName = displayName
         self.tag = tag

@@ -33,7 +33,7 @@ struct MixableConfiguration: DisplayModeConfiguration {
         if recipeResult.missingIngredients.count == 0 {
             cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients"
         } else {
-            cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients (\(recipeResult.missingIngredients) missing)"
+            cell.detailTextLabel.text = "\(recipe.measuredIngredients.count) ingredients (\(recipeResult.missingIngredients.count) missing)"
         }
     }
 }

@@ -76,16 +76,16 @@ class RecipeIndex {
     }
 
     func getFuzzyMixableRecipes(availableIngredients: Set<Ingredient>) -> RecipeSearchResult[] {
-        var genericTags = availableIngredients.map { $0.genericTag }
+        var mostGenericTags = availableIngredients.map { $0.mostGenericTag }
         var allTags = availableIngredients.map { $0.tag }
-        allTags.put(genericTags)
+        allTags.put(mostGenericTags)
 
         var result: RecipeSearchResult[] = []
 
         for r in self.allRecipes {
-            var recipeGenericTags = Set(array: r.genericIngredientTags)
-            var missingCount = (recipeGenericTags - genericTags).count
-            if missingCount <= _RecipeIndex_FUZZY_MATCH_COUNT && missingCount != recipeGenericTags.count {
+            var recipeMostGenericTags = Set(array: r.mostGenericIngredientTags)
+            var missingCount = (recipeMostGenericTags - mostGenericTags).count
+            if missingCount <= _RecipeIndex_FUZZY_MATCH_COUNT && missingCount != recipeMostGenericTags.count {
                 result += RecipeIndex.generateRecipeSearchResultFor(r, withAvailableTags: allTags)
             }
         }
@@ -93,6 +93,8 @@ class RecipeIndex {
         return sort(result) { $0.recipe.name < $1.recipe.name }
     }
 
+    // Do we even need these functions anymore?
+    /*
     func groupByMissingIngredients(availableIngredients: Set<Ingredient>) -> Dictionary<Int, RecipeSearchResult[]> {
         return self._groupByMissingIngredients(availableIngredients)
     }
@@ -122,4 +124,5 @@ class RecipeIndex {
 
         return grouped
     }
+    */
 }

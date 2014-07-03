@@ -36,14 +36,8 @@ class Recipe {
         return self.unmeasuredIngredients.map { $0.tag }
     }
 
-    var genericIngredientTags: String[] {
-        return self.unmeasuredIngredients.filter({
-            if let _ = $0.genericTag {
-                return true
-            } else {
-                return false
-            }
-        }).map { $0.genericTag! }
+    var mostGenericIngredientTags: String[] {
+        return self.unmeasuredIngredients.map { $0.mostGenericTag }
     }
 
     init(name: String, measuredIngredients: MeasuredIngredient[], instructions: String, isCustom: Bool = false, notes: String?, sourceName: String?, sourceUrl: String?) {
