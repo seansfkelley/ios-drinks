@@ -20,10 +20,6 @@
     "generic" : "irish cream"
   },
   {
-    "display": "Irish Cream",
-    "hidden" : true
-  },
-  {
     "display" : "B\u00E9n\u00E9dictine",
     "tag"     : "benedictine"
   },
@@ -34,10 +30,6 @@
   {
     "display" : "Cacha\u00e7a",
     "tag"     : "cachaca"
-  },
-  {
-    "display" : "Chartreuse",
-    "hidden"  : true
   },
   {
     "display" : "Coffee Liqueur"
@@ -142,10 +134,6 @@
     "generic" : "mezcal"
   },
   {
-    "display" : "Mezcal",
-    "hidden"  : true
-  },
-  {
     "display" : "Milk"
   },
   {
@@ -153,10 +141,6 @@
   },
   {
     "display" : "Noisette"
-  },
-  {
-    "display" : "Rum",
-    "hidden"  : true
   },
   {
     "display" : "Rye Whiskey",
@@ -196,10 +180,6 @@
     "generic" : "tequila"
   },
   {
-    "display" : "Tequila",
-    "hidden"  : true
-  },
-  {
     "display" : "Tonic"
   },
   {
@@ -207,9 +187,6 @@
   },
   {
     "display" : "Vodka"
-  },
-  {
-    "display" : "Whiskey"
   },
   {
     "display" : "Irish Whiskey",
@@ -255,5 +232,13 @@
   },
   {
     "display" : "Lemon"
+  },
+  {
+    "display" : "Drambuie",
+    "generic" : "honey whiskey"
+  },
+  {
+    "display" : "Tennessee Whiskey",
+    "generic" : "whiskey"
   }
 ]

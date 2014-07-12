@@ -23,9 +23,23 @@ func loadJSONArrayFromPath(path: String) -> JSONObject[] {
     }
 }
 
+func _loadDefaultIngredientsFromJSON() -> Ingredient[] {
+    var loadedIngredients = loadJSONArrayFromPath(NSBundle.mainBundle().pathForResource("ingredients", ofType: ".json")).map({ Ingredient(fromParsedJson: $0) })
+    var allIngredients = loadedIngredients.copy()
+    var knownTags = Set(array: loadedIngredients.map { $0.tag })
+    for i in loadedIngredients {
+        if i.genericTag && !knownTags[i.genericTag!] {
+            println("\(i) refers to unknown generic '\(i.genericTag)'; inferring hidden ingredient")
+            allIngredients.append(Ingredient(displayName: "[inferred] \(i.genericTag!)", tag: i.genericTag!, genericTag: nil, isHidden: true))
+            knownTags.put(i.genericTag!)
+        }
+    }
+    return allIngredients
+}
+
 let _RecipeIndex_INSTANCE = RecipeIndex()
 
-let _RecipeIndex_INGREDIENTS = loadJSONArrayFromPath(NSBundle.mainBundle().pathForResource("ingredients", ofType: ".json")).map({ Ingredient(fromParsedJson: $0) })
+let _RecipeIndex_INGREDIENTS = _loadDefaultIngredientsFromJSON()
 
 let _RecipeIndex_FUZZY_MATCH_COUNT = 2
 
