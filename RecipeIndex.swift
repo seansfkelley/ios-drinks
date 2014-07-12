@@ -172,6 +172,24 @@ class RecipeIndex {
         }
     }
 
+    func similarityIndex(r1: Recipe, r2: Recipe) -> Float {
+        // Some combination of /which/ ingredients exists and a cosine similarity weighted
+        // by quantity would be ideal -- how to get good weightings automagically? And how
+        // to deal with generics: should we explode an ingredient into all its ancestors,
+        // then weight them all the same, then compute the vector?
+
+        var allIngredientsWithGenerics1 = self._withAnyGenerics(Set(array: r1.unmeasuredIngredients))
+        var allIngredientsWithGenerics2 = self._withAnyGenerics(Set(array: r2.unmeasuredIngredients))
+
+        // http://en.wikipedia.org/wiki/Jaccard_index
+        return Float((allIngredientsWithGenerics1 & allIngredientsWithGenerics2).count) /
+               Float((allIngredientsWithGenerics1 | allIngredientsWithGenerics2).count)
+
+        // http://en.wikipedia.org/wiki/S%C3%B8rensen_similarity_index
+//        return 2 * Float((allIngredientsWithGenerics1 & allIngredientsWithGenerics2).count) /
+//               Float(allIngredientsWithGenerics1.count + allIngredientsWithGenerics2.count)
+    }
+
     func savePermanentState() {
         // Save any custom recipes.
     }
