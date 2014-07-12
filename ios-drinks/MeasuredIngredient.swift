@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Sean Kelley. All rights reserved.
 //
 
-class MeasuredIngredient {
+class MeasuredIngredient: Printable {
     let ingredient: Ingredient?
     let measurementDisplay: String
     let ingredientDisplay: String
@@ -15,5 +15,9 @@ class MeasuredIngredient {
         self.ingredient = ingredient
         self.measurementDisplay = measurementDisplay
         self.ingredientDisplay = ingredientDisplay
+    }
+
+    var description: String {
+        return "MeasuredIngredient[\(self.measurementDisplay) \(self.ingredientDisplay)]"
     }
 }

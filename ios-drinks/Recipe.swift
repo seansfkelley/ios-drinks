@@ -11,7 +11,7 @@ import Foundation
 let dropCharactersRegex = NSRegularExpression(pattern: "[^- a-zA-Z0-9]", options: nil, error: nil)
 let collapseWhitespaceRegex = NSRegularExpression(pattern: " +", options: nil, error: nil)
 
-class Recipe {
+class Recipe: Printable {
     let name: String
     let normalizedName: String
     let measuredIngredients: MeasuredIngredient[]
@@ -34,6 +34,10 @@ class Recipe {
 
     var ingredientTags: String[] {
         return self.unmeasuredIngredients.map { $0.tag }
+    }
+
+    var description: String {
+        return "Recipe[\(self.normalizedName)]"
     }
 
     init(name: String, measuredIngredients: MeasuredIngredient[], instructions: String, isCustom: Bool = false, notes: String?, sourceName: String?, sourceUrl: String?) {

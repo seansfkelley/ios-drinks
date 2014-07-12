@@ -21,7 +21,11 @@ class Ingredient: Hashable, Equatable, Printable {
     }
 
     var description: String {
-        return "Ingredient[\(self.tag)]"
+        var desc = "Ingredient[\(self.tag)"
+        if self.genericTag {
+            desc += " -> \(self.genericTag!)"
+        }
+        return desc + "]"
     }
 
     init(displayName: String, tag: String, genericTag: String? = nil, isHidden: Bool = false) {
