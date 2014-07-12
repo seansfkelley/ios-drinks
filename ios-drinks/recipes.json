@@ -1076,5 +1076,21 @@
     "notes": "To make the lemon basil simple syrup, use 4 parts sugar and 4 parts water to 1 part (loosely packed) basil leaves.",
     "source": "Saveur",
     "url": "http://www.saveur.com/article/Recipes/Lemon-Basil-Blossom-Cocktail"
+  },
+  {
+    "name": "Rusty Nail",
+    "ingredients": [
+      {
+        "tag": "drambuie",
+        "displayMeasure": "3/4 oz",
+        "displayIngredient": "Drambuie"
+      },
+      {
+        "tag": "scotch",
+        "displayMeasure": "2 oz",
+        "displayIngredient": "blended scotch whiskey"
+      }
+    ],
+    "instructions": "Stir ingredients together with ice. Strain into ice-filled glass."
   }
 ]
