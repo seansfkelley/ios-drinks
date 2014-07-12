@@ -39,9 +39,12 @@ class PagingRecipeViewController: UIPageViewController, UIPageViewControllerData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self._imageController = self.storyboard.instantiateViewControllerWithIdentifier("RecipeImageViewController") as RecipeImageViewController // RecipeDetailViewController
-        self._detailsController = self.storyboard.instantiateViewControllerWithIdentifier("RecipeDetailViewController") as RecipeDetailViewController2
-        self._sourceController = self.storyboard.instantiateViewControllerWithIdentifier("RecipeSourceViewController") as RecipeSourceViewController
+        self._imageController =
+            self.storyboard.instantiateViewControllerWithIdentifier("RecipeImageViewController") as RecipeImageViewController
+        self._detailsController =
+            self.storyboard.instantiateViewControllerWithIdentifier("RecipeDetailViewController") as RecipeDetailViewController2
+        self._sourceController =
+            self.storyboard.instantiateViewControllerWithIdentifier("RecipeSourceViewController") as RecipeSourceViewController
 
         self.dataSource = self
     }
