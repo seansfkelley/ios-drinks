@@ -44,7 +44,7 @@ class Ingredient: Hashable, Equatable {
             self.tag = self.displayName.lowercaseString
         }
 
-        self.genericTag = json["genericTag"] as? String
+        self.genericTag = json["generic"] as? String
 
         if let isHidden = json["hidden"] as? Bool {
             self.isHidden = isHidden
