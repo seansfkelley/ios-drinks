@@ -139,14 +139,20 @@ struct Set<T: Hashable>: Sequence, Printable {
 
 }
 
-func + <T>(a: Set<T>, b: Set<T>) -> Set<T> {
+@infix func | <T>(a: Set<T>, b: Set<T>) -> Set<T> {
     var result = Set<T>(set: a)
     result.put(b)
     return result
 }
 
-func - <T>(a: Set<T>, b: Set<T>) -> Set<T> {
+@infix func - <T>(a: Set<T>, b: Set<T>) -> Set<T> {
     var result = Set<T>(set: a)
     result.remove(b)
     return result
 }
+
+@infix func & <T>(a: Set<T>, b: Set<T>) -> Set<T> {
+    // http://en.wikipedia.org/wiki/Algebra_of_sets#Some_additional_laws_for_unions_and_intersections
+    return a - (a - b);
+}
+
