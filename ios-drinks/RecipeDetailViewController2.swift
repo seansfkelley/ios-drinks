@@ -59,11 +59,11 @@ class RecipeDetailViewController2: RecipeDetailPageViewController, UITableViewDa
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         // I can't one-line this or remove the names because otherwise Swift will shit itself
         // even though it should be identical without using intermediate values.
-        var sections: (ingredientSection: MeasuredIngredient[], title: String)[] = [
-            (ingredientSection: self.recipeResult.availableIngredients,  title: "Available Ingredients"),
-            (ingredientSection: self.recipeResult.substituteIngredients, title: "Substitute Ingredients"),
-            (ingredientSection: self.recipeResult.missingIngredients,    title: "Missing Ingredients")
-        ].filter({ $0.ingredientSection.count > 0 })
+        var sections: (ingredients: MeasuredIngredient[], title: String)[] = [
+            (ingredients: self.recipeResult.availableIngredients,  title: "Available Ingredients"),
+            (ingredients: self.recipeResult.substituteIngredients, title: "Substitute Ingredients"),
+            (ingredients: self.recipeResult.missingIngredients,    title: "Missing Ingredients")
+        ].filter({ $0.ingredients.count > 0 })
         return sections[section].title
     }
 }
