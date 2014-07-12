@@ -20,7 +20,7 @@ struct SetGenerator<T: Hashable>: Generator {
     }
 }
 
-struct Set<T: Hashable>: Sequence {
+struct Set<T: Hashable>: Sequence, Printable {
     var _dict = Dictionary<T, Bool>()
 
     init() {}
@@ -45,6 +45,15 @@ struct Set<T: Hashable>: Sequence {
 
     var count: Int {
         return self._dict.count
+    }
+
+    var description: String {
+        // The type signture for join makes no fucking sense:
+        //   join<S : Sequence where String == String>(elements: S) -> String
+        // Set is a Sequence, and String is always String, but this throws crazy
+        // exceptions at runtime. Only by converting into Swift-native arrays
+        // can it be happy, even though it compiles fine as ", ".join(self).
+        return "{ " + ", ".join(self.toArray().map(toString)) + " }"
     }
 
     mutating func put(element: T?) {
