@@ -76,6 +76,8 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad()  {
         super.viewDidLoad()
 
+        self.tableView.registerNib(UINib(nibName: "RecipeTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: _SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER)
+
         // This is pretty fragile, but whatever.
         self.tableView.contentInset = UIEdgeInsets(top: self.searchBar.frame.height, left: 0, bottom: 0, right: 0)
 
@@ -91,6 +93,7 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     override func viewWillAppear(animated: Bool) {
         // http://stackoverflow.com/questions/19379510/uitableviewcell-doesnt-get-deselected-when-swiping-back-quickly
         // In addition to fixing the above, also serves to deselect it under normal circumstances.
+//        self.tableView.cellForRowAtIndexPath(self.tableView.index)
         self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow(), animated: animated)
     }
 
@@ -105,7 +108,9 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(_SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER) as RecipeTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(_SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER) as RecipeTableViewCell
+        cell.controller = self
+        cell.tableView = tableView
 
         _DISPLAY_MODE_TO_CONFIGURATION[self._displayMode]!.styleTableCell(cell, recipeResult: self.manager!.objectAtIndexPath(indexPath))
 
@@ -148,8 +153,6 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     // pragma mark Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject) {
-        // http://stackoverflow.com/questions/15414146/uitableview-prepareforsegue-assigning-indexpath-to-sender
-
         var controller = UIUtils.actualTargetViewControllerForSegue(segue)
 
         if controller.isKindOfClass(PagingRecipeViewController.self) {
@@ -158,12 +161,12 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
 
             pagingController.allRecipeResults = self.manager.sortedItems
             pagingController.currentResultIndex = self.manager.sortedIndexForIndexPath(indexPath)
-        } else if controller.isKindOfClass(RecipeDetailViewController.self) {
-            let recipeController = controller as RecipeDetailViewController
-            let indexPath = self.tableView.indexPathForSelectedRow()
-
-            recipeController.allRecipeResults = self.manager.sortedItems
-            recipeController.currentResultIndex = self.manager.sortedIndexForIndexPath(indexPath)
+//        } else if controller.isKindOfClass(RecipeDetailViewController.self) {
+//            let recipeController = controller as RecipeDetailViewController
+//            let indexPath = self.tableView.indexPathForSelectedRow()
+//
+//            recipeController.allRecipeResults = self.manager.sortedItems
+//            recipeController.currentResultIndex = self.manager.sortedIndexForIndexPath(indexPath)
         } else {
             assert(false, "Unknown segue. All segues must be handled.")
         }

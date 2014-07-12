@@ -172,7 +172,11 @@ class RecipeIndex {
         }
     }
 
-    func similarityIndex(r1: Recipe, r2: Recipe) -> Float {
+    func getSimilarRecipes(recipe: Recipe) -> Recipe[] {
+        return self.allRecipes.filter { self._similarityIndex($0, r2: recipe) > 0.05 }
+    }
+
+    func _similarityIndex(r1: Recipe, r2: Recipe) -> Float {
         // Some combination of /which/ ingredients exists and a cosine similarity weighted
         // by quantity would be ideal -- how to get good weightings automagically? And how
         // to deal with generics: should we explode an ingredient into all its ancestors,

@@ -8,9 +8,23 @@
 
 import UIKit
 
+let RecipeTableViewCell_SEGUE_NAME = "recipeTableViewCellSelected"
+
 class RecipeTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel
     @IBOutlet var subtitleLabel: UILabel
     @IBOutlet var subtitleAsideLabel: UILabel
     @IBOutlet var recipeImageView: UIImageView
+
+    var controller: UIViewController!
+    var tableView: UITableView!
+
+    override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!)  {
+        var indexPath = self.tableView.indexPathForCell(self)
+        self.tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+
+        self.controller.performSegueWithIdentifier(RecipeTableViewCell_SEGUE_NAME, sender: self)
+
+        super.touchesEnded(touches, withEvent: event)
+    }
 }
