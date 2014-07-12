@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Ingredient: Hashable, Equatable {
+class Ingredient: Hashable, Equatable, Printable {
     let displayName: String = ""
     let tag: String = ""
     let genericTag: String? = nil
@@ -20,12 +20,8 @@ class Ingredient: Hashable, Equatable {
         return self.tag.hashValue // Ingredients must have unique tags, so we can use it as the hash.
     }
 
-    var mostGenericTag: String {
-        if let resolvedGenericTag = self.genericTag {
-            return resolvedGenericTag
-        } else {
-            return self.tag
-        }
+    var description: String {
+        return "Ingredient[\(self.tag)]"
     }
 
     init(displayName: String, tag: String, genericTag: String? = nil, isHidden: Bool = false) {

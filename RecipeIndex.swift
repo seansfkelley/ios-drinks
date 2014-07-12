@@ -109,18 +109,45 @@ class RecipeIndex {
         }
     }
 
+    func _withAnyGenerics(ingredients: Set<Ingredient>) -> Set<Ingredient> {
+        var withGenerics = Set<Ingredient>()
+        for i in ingredients {
+            var current = i
+            withGenerics.put(current)
+            while current.genericTag {
+                current = self._tagToIngredient[current.genericTag!]!
+                withGenerics.put(current)
+            }
+        }
+        return withGenerics
+    }
+
     func getFuzzyMixableRecipes(availableIngredients: Set<Ingredient>) -> RecipeSearchResult[] {
-        var mostGenericTags = availableIngredients.map { $0.mostGenericTag }
-        var allTags = availableIngredients.map { $0.tag }
-        allTags.put(mostGenericTags)
+        var allAvailableIngredientsWithGenerics = self._withAnyGenerics(availableIngredients)
+
+        var allAvailableTags = Set<String>()
+        var mostGenericAvailableTags = Set<String>()
+        for i in allAvailableIngredientsWithGenerics {
+            allAvailableTags.put(i.tag)
+            if !i.genericTag {
+                mostGenericAvailableTags.put(i.tag)
+            }
+        }
 
         var result: RecipeSearchResult[] = []
 
         for r in self.allRecipes {
-            var recipeMostGenericTags = Set(array: r.mostGenericIngredientTags)
-            var missingCount = (recipeMostGenericTags - mostGenericTags).count
-            if missingCount <= _RecipeIndex_FUZZY_MATCH_COUNT && missingCount != recipeMostGenericTags.count {
-                result += RecipeIndex.generateRecipeSearchResultFor(r, withAvailableTags: allTags)
+            var mostGenericRecipeTags = Set<String>()
+
+            for i in self._withAnyGenerics(Set(array: r.unmeasuredIngredients)) {
+                if !i.genericTag {
+                    mostGenericRecipeTags.put(i.tag)
+                }
+            }
+            var i = 1
+            var missingCount = (mostGenericRecipeTags - mostGenericAvailableTags).count
+            if missingCount <= _RecipeIndex_FUZZY_MATCH_COUNT && missingCount != mostGenericRecipeTags.count {
+                result += RecipeIndex.generateRecipeSearchResultFor(r, withAvailableTags: allAvailableTags)
             }
         }
 

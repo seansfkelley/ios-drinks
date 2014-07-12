@@ -36,10 +36,6 @@ class Recipe {
         return self.unmeasuredIngredients.map { $0.tag }
     }
 
-    var mostGenericIngredientTags: String[] {
-        return self.unmeasuredIngredients.map { $0.mostGenericTag }
-    }
-
     init(name: String, measuredIngredients: MeasuredIngredient[], instructions: String, isCustom: Bool = false, notes: String?, sourceName: String?, sourceUrl: String?) {
         self.name = name
         self.measuredIngredients = measuredIngredients
