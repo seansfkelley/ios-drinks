@@ -3,3 +3,10 @@ figure out scrolling behavior when switching tables in recipe view
 add search to ingredients view
 should not hide the hairline shadow when navigating deeper into the recipe view
 why is the entire app's background black and can I change it?
+
+design todos:
+3 pages per recipe:
+    1. full-size picture, notes (?), link (out to safari!)
+    2. ingredients, instructions (ordered?), notes (?)
+    3. similar drinks (automatically determined?)
+question: page control dots, or segmented control with secondary swiping support?
