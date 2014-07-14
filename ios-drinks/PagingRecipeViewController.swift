@@ -26,14 +26,10 @@ class PagingRecipeViewController: UIPageViewController, UIPageViewControllerData
 
     var _imageController: RecipeImageViewController!
     var _detailsController: RecipeDetailViewController2!
-    var _sourceController: RecipeSourceViewController!
+    var _similarDrinksController: SimilarDrinksViewController!
 
     var _currentViewControllers: RecipeDetailPageViewController[] {
-        var controllers: RecipeDetailPageViewController[] = [ self._imageController, self._detailsController ]
-        if self.recipeResult.recipe.sourceUrl {
-            controllers += self._sourceController
-        }
-        return controllers
+        return [ self._imageController, self._detailsController, self._similarDrinksController ]
     }
 
     override func viewDidLoad() {
@@ -43,8 +39,8 @@ class PagingRecipeViewController: UIPageViewController, UIPageViewControllerData
             self.storyboard.instantiateViewControllerWithIdentifier("RecipeImageViewController") as RecipeImageViewController
         self._detailsController =
             self.storyboard.instantiateViewControllerWithIdentifier("RecipeDetailViewController") as RecipeDetailViewController2
-        self._sourceController =
-            self.storyboard.instantiateViewControllerWithIdentifier("RecipeSourceViewController") as RecipeSourceViewController
+        self._similarDrinksController =
+            self.storyboard.instantiateViewControllerWithIdentifier("SimilarDrinksViewController") as SimilarDrinksViewController
 
         self.dataSource = self
     }

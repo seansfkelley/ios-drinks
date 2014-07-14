@@ -19,6 +19,7 @@
 		787D0DC1194A8D0100229C76 /* AlphabeticalTableSectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787D0DC0194A8D0100229C76 /* AlphabeticalTableSectionManager.swift */; };
 		7891388F1965CAE9001AB63E /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7891388E1965CAE9001AB63E /* RecipeTableViewCell.swift */; };
 		789138921965D06C001AB63E /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 789138911965D06C001AB63E /* todo.txt */; };
+		78936D511973772E00867F79 /* SimilarDrinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78936D501973772E00867F79 /* SimilarDrinksViewController.swift */; };
 		789AC3191965F40F00055AB6 /* DefaultRecipeImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 789AC3171965F40F00055AB6 /* DefaultRecipeImage.png */; };
 		789AC31A1965F40F00055AB6 /* DefaultRecipeImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 789AC3181965F40F00055AB6 /* DefaultRecipeImage@2x.png */; };
 		789BD6B51971D3BB00557E20 /* RecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 789BD6B41971D3BB00557E20 /* RecipeTableViewCell.xib */; };
@@ -34,7 +35,6 @@
 		78C1DD0E195BFD5E0077C029 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C1DD0D195BFD5E0077C029 /* UIUtils.swift */; };
 		78C1DD10195BFEB90077C029 /* SelectedIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C1DD0F195BFEB90077C029 /* SelectedIngredient.swift */; };
 		78FB76E719660A2F00366B35 /* RecipeImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FB76E619660A2F00366B35 /* RecipeImageViewController.swift */; };
-		78FB76E919660B7000366B35 /* RecipeSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FB76E819660B7000366B35 /* RecipeSourceViewController.swift */; };
 		78FB76EC19660BFA00366B35 /* RecipeDetailViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FB76EB19660BFA00366B35 /* RecipeDetailViewController2.swift */; };
 		78FB76EE19660E5300366B35 /* RecipeDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FB76ED19660E5300366B35 /* RecipeDetailPageViewController.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +69,7 @@
 		787D0DC0194A8D0100229C76 /* AlphabeticalTableSectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphabeticalTableSectionManager.swift; sourceTree = "<group>"; };
 		7891388E1965CAE9001AB63E /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		789138911965D06C001AB63E /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = todo.txt; path = ../todo.txt; sourceTree = "<group>"; };
+		78936D501973772E00867F79 /* SimilarDrinksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimilarDrinksViewController.swift; path = ../SimilarDrinksViewController.swift; sourceTree = "<group>"; };
 		789AC3161965F40300055AB6 /* martini-glass.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "martini-glass.psd"; sourceTree = "<group>"; };
 		789AC3171965F40F00055AB6 /* DefaultRecipeImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultRecipeImage.png; sourceTree = "<group>"; };
 		789AC3181965F40F00055AB6 /* DefaultRecipeImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DefaultRecipeImage@2x.png"; sourceTree = "<group>"; };
@@ -89,7 +90,6 @@
 		78C1DD0D195BFD5E0077C029 /* UIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		78C1DD0F195BFEB90077C029 /* SelectedIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedIngredient.swift; sourceTree = "<group>"; };
 		78FB76E619660A2F00366B35 /* RecipeImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeImageViewController.swift; sourceTree = "<group>"; };
-		78FB76E819660B7000366B35 /* RecipeSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeSourceViewController.swift; sourceTree = "<group>"; };
 		78FB76EB19660BFA00366B35 /* RecipeDetailViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController2.swift; sourceTree = "<group>"; };
 		78FB76ED19660E5300366B35 /* RecipeDetailPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,7 +254,7 @@
 				78FB76ED19660E5300366B35 /* RecipeDetailPageViewController.swift */,
 				78FB76E619660A2F00366B35 /* RecipeImageViewController.swift */,
 				78FB76EB19660BFA00366B35 /* RecipeDetailViewController2.swift */,
-				78FB76E819660B7000366B35 /* RecipeSourceViewController.swift */,
+				78936D501973772E00867F79 /* SimilarDrinksViewController.swift */,
 			);
 			name = "recipe detail";
 			sourceTree = "<group>";
@@ -381,11 +381,11 @@
 				78C1C694194D68E700469918 /* exceptionUtils.swift in Sources */,
 				7814F365194E9331007E3DC7 /* RecipeDetailViewController.swift in Sources */,
 				78093D8B1964ED5A00E34D0F /* HairlineHidingNavigationController.swift in Sources */,
-				78FB76E919660B7000366B35 /* RecipeSourceViewController.swift in Sources */,
 				7814F367194FF79E007E3DC7 /* Set.swift in Sources */,
 				7891388F1965CAE9001AB63E /* RecipeTableViewCell.swift in Sources */,
 				78FB76E719660A2F00366B35 /* RecipeImageViewController.swift in Sources */,
 				787D0DB3194A816E00229C76 /* Recipe.swift in Sources */,
+				78936D511973772E00867F79 /* SimilarDrinksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
