@@ -21,7 +21,7 @@ class RecipeTableViewCell: UITableViewCell {
 
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!)  {
         var indexPath = self.tableView.indexPathForCell(self)
-        self.tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+        self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
 
         self.controller.performSegueWithIdentifier(RecipeTableViewCell_SEGUE_NAME, sender: self)
 

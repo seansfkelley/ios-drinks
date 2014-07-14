@@ -60,9 +60,9 @@ class RecipeDetailViewController2: RecipeDetailPageViewController, UITableViewDa
         // I can't one-line this or remove the names because otherwise Swift will shit itself
         // even though it should be identical without using intermediate values.
         var sections: (ingredients: MeasuredIngredient[], title: String)[] = [
-            (ingredients: self.recipeResult.availableIngredients,  title: "Available Ingredients"),
-            (ingredients: self.recipeResult.substituteIngredients, title: "Substitute Ingredients"),
-            (ingredients: self.recipeResult.missingIngredients,    title: "Missing Ingredients")
+            (ingredients: self.recipeResult.missingIngredients,    title: "Missing Ingredients"),
+            (ingredients: self.recipeResult.availableIngredients,  title: "Ingredients"),
+            (ingredients: self.recipeResult.substituteIngredients, title: "Ingredients (Substitutions)")
         ].filter({ $0.ingredients.count > 0 })
         return sections[section].title
     }

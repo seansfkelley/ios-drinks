@@ -58,7 +58,7 @@ class AlphabeticalTableSectionManager<T: AnyObject> {
     func sectionForSectionIndexTitle(sectionTitle: String) -> Int {
         for var i = self.orderedSectionTitles.count - 1; i >= 0; --i {
             var compareResult: NSComparisonResult = sectionTitle.compare(self.orderedSectionTitles[i])
-            if compareResult == NSComparisonResult.OrderedDescending || compareResult == NSComparisonResult.OrderedSame {
+            if compareResult == .OrderedDescending || compareResult == .OrderedSame {
                 return i
             }
         }

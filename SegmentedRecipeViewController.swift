@@ -93,7 +93,6 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     override func viewWillAppear(animated: Bool) {
         // http://stackoverflow.com/questions/19379510/uitableviewcell-doesnt-get-deselected-when-swiping-back-quickly
         // In addition to fixing the above, also serves to deselect it under normal circumstances.
-//        self.tableView.cellForRowAtIndexPath(self.tableView.index)
         self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow(), animated: animated)
     }
 
