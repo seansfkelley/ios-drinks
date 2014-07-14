@@ -240,5 +240,8 @@
   {
     "display" : "Tennessee Whiskey",
     "generic" : "whiskey"
+  },
+  {
+    "display" : "Peach"
   }
 ]

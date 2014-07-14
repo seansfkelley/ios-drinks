@@ -1092,5 +1092,38 @@
       }
     ],
     "instructions": "Stir ingredients together with ice. Strain into ice-filled glass."
+  },
+  {
+    "name": "Peach Julep",
+    "ingredients": [
+      {
+        "tag": "peach",
+        "displayMeasure": "1/4",
+        "displayIngredient": "overripe peach, sliced"
+      },
+      {
+        "tag": "simple syrup",
+        "displayMeasure": "3/4 oz",
+        "displayIngredient": "rooibos simple syrup"
+      },
+      {
+        "tag": "lemon juice",
+        "displayMeasure": "3/4 oz",
+        "displayIngredient": "fresh lemon juice"
+      },
+      {
+        "tag": "cognac",
+        "displayMeasure": "1 oz",
+        "displayIngredient": "cognac"
+      },
+      {
+        "tag": "lillet",
+        "displayMeasure": "1 oz",
+        "displayIngredient": "Lillet"
+      }
+    ],
+    "instructions": "In a mixing glass, muddle peach slices, rooibos syrup and lemon juice into a rough pulp. Add cognac and Lillet blanc, stir to mix. Pour unstrained into serving glass. Fill serving glass with crushed ice, garnish with large bunch of mint.",
+    "source": "Serious Eats",
+    "url": "http://www.seriouseats.com/recipes/2012/08/eastern-standard-peach-julep-cocktail-cognac-lillet-blanc-mint-recipe.html"
   }
 ]
