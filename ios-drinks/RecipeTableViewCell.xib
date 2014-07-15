@@ -14,26 +14,26 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RIk-jt-gMw" id="Abp-md-0pG">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ep-e7-hsm">
-                        <rect key="frame" x="105" y="27" width="31" height="20"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ep-e7-hsm">
+                        <rect key="frame" x="106" y="27" width="203" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Na9-rL-284">
-                        <rect key="frame" x="105" y="47" width="40" height="14"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Na9-rL-284">
+                        <rect key="frame" x="106" y="47" width="40" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Subtitle Aside" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pv7-8B-Txy">
-                        <rect key="frame" x="148" y="47" width="72" height="14"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle Aside" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pv7-8B-Txy">
+                        <rect key="frame" x="149" y="47" width="72" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lps-P7-SDK">
-                        <rect key="frame" x="15" y="6" width="75" height="75"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lps-P7-SDK">
+                        <rect key="frame" x="15" y="6" width="76" height="76"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="lps-P7-SDK" secondAttribute="height" multiplier="1:1" id="0tt-6T-biA"/>
                         </constraints>
@@ -41,13 +41,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Na9-rL-284" firstAttribute="leading" secondItem="2ep-e7-hsm" secondAttribute="leading" id="2kD-A7-wAQ"/>
-                    <constraint firstAttribute="centerY" secondItem="lps-P7-SDK" secondAttribute="centerY" id="IkA-lX-LQj"/>
                     <constraint firstItem="Pv7-8B-Txy" firstAttribute="centerY" secondItem="Na9-rL-284" secondAttribute="centerY" id="M7f-2A-Sb5"/>
                     <constraint firstItem="lps-P7-SDK" firstAttribute="top" secondItem="Abp-md-0pG" secondAttribute="top" constant="6" id="QRu-sL-ZOA"/>
                     <constraint firstItem="Pv7-8B-Txy" firstAttribute="leading" secondItem="Na9-rL-284" secondAttribute="trailing" constant="3" id="b73-nr-KLl"/>
                     <constraint firstItem="2ep-e7-hsm" firstAttribute="top" secondItem="Abp-md-0pG" secondAttribute="top" constant="27" id="cAu-LR-Ldq"/>
                     <constraint firstItem="2ep-e7-hsm" firstAttribute="baseline" secondItem="Na9-rL-284" secondAttribute="top" constant="-5" id="cMl-rZ-UQN"/>
                     <constraint firstAttribute="bottom" secondItem="lps-P7-SDK" secondAttribute="bottom" constant="6" id="iIl-Xs-Waj"/>
+                    <constraint firstAttribute="trailing" secondItem="2ep-e7-hsm" secondAttribute="trailing" id="q74-aq-GcH"/>
                     <constraint firstItem="2ep-e7-hsm" firstAttribute="leading" secondItem="lps-P7-SDK" secondAttribute="trailing" constant="15" id="rls-I0-EVq"/>
                     <constraint firstItem="lps-P7-SDK" firstAttribute="leading" secondItem="Abp-md-0pG" secondAttribute="leading" constant="15" id="xNZ-3e-wV0"/>
                 </constraints>
@@ -58,7 +58,7 @@
                 <outlet property="subtitleLabel" destination="Na9-rL-284" id="hE5-Qk-nwv"/>
                 <outlet property="titleLabel" destination="2ep-e7-hsm" id="PAi-eH-mSI"/>
             </connections>
-            <point key="canvasLocation" x="310" y="198.5"/>
+            <point key="canvasLocation" x="310" y="197.5"/>
         </tableViewCell>
     </objects>
 </document>
