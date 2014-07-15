@@ -8,20 +8,25 @@
 
 import UIKit
 
-enum RecipeDisplayMode: String {
-    case ALL = "All"
-    case MIXABLE = "Mixable"
+enum RecipeDisplayMode {
+    case AllDrinks
+    case MixableDrinks
 }
 
 
 
 protocol DisplayModeConfiguration {
+    var title: String { get }
     var recipes: RecipeSearchResult[] { get }
 
     func styleTableCell(cell: RecipeTableViewCell, recipeResult: RecipeSearchResult)
 }
 
 struct MixableConfiguration: DisplayModeConfiguration {
+    var title: String {
+        return "Mixable (\(self.recipes.count))"
+    }
+
     var recipes: RecipeSearchResult[] {
         return RecipeIndex.instance().getFuzzyMixableRecipes(SelectedIngredients.instance().set)
     }
@@ -42,6 +47,10 @@ struct MixableConfiguration: DisplayModeConfiguration {
 }
 
 struct AllConfiguration: DisplayModeConfiguration {
+    var title: String {
+        return "All (\(RecipeIndex.instance().allRecipes.count))"
+    }
+
     var recipes: RecipeSearchResult[] = RecipeIndex.instance().allRecipes.map { RecipeIndex.generateDummySearchResultFor($0) }
 
     func styleTableCell(cell: RecipeTableViewCell, recipeResult: RecipeSearchResult) {
@@ -57,10 +66,10 @@ struct AllConfiguration: DisplayModeConfiguration {
 
 
 // These really should be class statics, once Swift supports that.
-let _DISPLAY_MODE_ORDERING: RecipeDisplayMode[] = [ .ALL, .MIXABLE ]
-let _DISPLAY_MODE_TO_CONFIGURATION: Dictionary<RecipeDisplayMode, DisplayModeConfiguration> = [
-    .ALL: AllConfiguration(),
-    .MIXABLE: MixableConfiguration()
+let _SegmentedRecipeViewController_DISPLAY_MODE_ORDERING: RecipeDisplayMode[] = [ .AllDrinks, .MixableDrinks ]
+let _SegmentedRecipeViewController_DISPLAY_MODE_TO_CONFIGURATION: Dictionary<RecipeDisplayMode, DisplayModeConfiguration> = [
+    .AllDrinks: AllConfiguration(),
+    .MixableDrinks: MixableConfiguration()
 ]
 let _SegmentedRecipeViewController_PROTOTYPE_CELL_IDENTIFIER = "RecipePrototypeCell"
 
@@ -71,7 +80,7 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet var searchBar: UISearchBar
     @IBOutlet var tableView: UITableView
 
-    var _displayMode = RecipeDisplayMode.ALL // Tagged class. Fuck iOS and how fucking hard it is to just have a view controller that swaps out other fucking view controllers.
+    var _displayMode = RecipeDisplayMode.AllDrinks // Tagged class. Fuck iOS and how fucking hard it is to just have a view controller that swaps out other fucking view controllers.
 
     override func viewDidLoad()  {
         super.viewDidLoad()
@@ -82,8 +91,8 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
         self.tableView.contentInset = UIEdgeInsets(top: self.searchBar.frame.height, left: 0, bottom: 0, right: 0)
 
         self.segmentedControl.removeAllSegments()
-        for mode in _DISPLAY_MODE_ORDERING {
-            self.segmentedControl.insertSegmentWithTitle(mode.toRaw(), atIndex: self.segmentedControl.numberOfSegments, animated: false)
+        for mode in _SegmentedRecipeViewController_DISPLAY_MODE_ORDERING {
+            self.segmentedControl.insertSegmentWithTitle(_SegmentedRecipeViewController_DISPLAY_MODE_TO_CONFIGURATION[mode]!.title, atIndex: self.segmentedControl.numberOfSegments, animated: false)
         }
 
         self.segmentedControl.selectedSegmentIndex = 0
@@ -91,9 +100,15 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     }
 
     override func viewWillAppear(animated: Bool) {
+        for (i, mode) in enumerate(_SegmentedRecipeViewController_DISPLAY_MODE_ORDERING) {
+            self.segmentedControl.setTitle(_SegmentedRecipeViewController_DISPLAY_MODE_TO_CONFIGURATION[mode]!.title, forSegmentAtIndex: i)
+        }
+
         // http://stackoverflow.com/questions/19379510/uitableviewcell-doesnt-get-deselected-when-swiping-back-quickly
         // In addition to fixing the above, also serves to deselect it under normal circumstances.
         self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow(), animated: animated)
+
+        self._reloadDataRespectingSearchText()
     }
 
     // pragma mark UITableViewDataSource
@@ -111,7 +126,7 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
         cell.controller = self
         cell.tableView = tableView
 
-        _DISPLAY_MODE_TO_CONFIGURATION[self._displayMode]!.styleTableCell(cell, recipeResult: self.manager!.objectAtIndexPath(indexPath))
+        _SegmentedRecipeViewController_DISPLAY_MODE_TO_CONFIGURATION[self._displayMode]!.styleTableCell(cell, recipeResult: self.manager!.objectAtIndexPath(indexPath))
 
         return cell
     }
@@ -137,7 +152,7 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     // pragma mark UISegmentedControl actions
 
     @IBAction func indexChanged() {
-        self._displayMode = _DISPLAY_MODE_ORDERING[self.segmentedControl.selectedSegmentIndex]
+        self._displayMode = _SegmentedRecipeViewController_DISPLAY_MODE_ORDERING[self.segmentedControl.selectedSegmentIndex]
         self.searchBar.text = ""
         self.searchBar.resignFirstResponder()
         self._reloadDataRespectingSearchText()
@@ -174,7 +189,7 @@ class SegmentedRecipeViewController: UIViewController, UITableViewDataSource, UI
     // pragma mark Miscellaneous
 
     func _reloadDataRespectingSearchText() {
-        var recipes = _DISPLAY_MODE_TO_CONFIGURATION[self._displayMode]!.recipes
+        var recipes = _SegmentedRecipeViewController_DISPLAY_MODE_TO_CONFIGURATION[self._displayMode]!.recipes
 
         if !self.searchBar.text.isEmpty {
             recipes = recipes.filter(RecipeIndex.generateSearchTextFilterFunction(self.searchBar.text))
