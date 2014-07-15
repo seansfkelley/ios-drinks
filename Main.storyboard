@@ -244,7 +244,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Ingredients" id="VOC-nk-UML">
-                        <barButtonItem key="leftBarButtonItem" title="Reset" id="PkE-cS-Bfs">
+                        <barButtonItem key="leftBarButtonItem" title="Clear" id="PkE-cS-Bfs">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="resetIngredients" destination="0G0-nG-5MZ" id="ZKB-X1-7cb"/>
