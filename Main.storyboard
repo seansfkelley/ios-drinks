@@ -182,6 +182,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uzt-z9-C4C">
                                 <rect key="frame" x="0.0" y="62" width="320" height="506"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XuK-LB-d2q">
+                                <rect key="frame" x="0.0" y="471" width="320" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="goToSource" destination="652-XL-Fwe" eventType="touchUpInside" id="Yf4-Me-mMo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -189,6 +197,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="Uzt-z9-C4C" id="kOK-7D-FEB"/>
+                        <outlet property="sourceButton" destination="XuK-LB-d2q" id="IwE-Ua-45e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qod-v3-OaA" userLabel="First Responder" sceneMemberID="firstResponder"/>

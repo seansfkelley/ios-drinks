@@ -9,9 +9,21 @@
 import UIKit
 
 class RecipeImageViewController: RecipeDetailPageViewController {
+    @IBOutlet var sourceButton: UIButton
     @IBOutlet var imageView: UIImageView
 
     override func viewWillAppear(animated: Bool)  {
         self.imageView.image = UIImage(named: "DefaultRecipeImage")
+
+        if let name = self.recipeResult.recipe.sourceName {
+            self.sourceButton.hidden = false
+            self.sourceButton.setTitle("from \(name)", forState: UIControlState.Normal)
+        } else {
+            self.sourceButton.hidden = true
+        }
+    }
+
+    @IBAction func goToSource() {
+        UIApplication.sharedApplication().openURL(NSURL(string: self.recipeResult.recipe.sourceUrl!))
     }
 }

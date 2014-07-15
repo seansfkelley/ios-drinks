@@ -4,6 +4,7 @@ add search to ingredients view
 should not hide the hairline shadow when navigating deeper into the recipe view
 why is the entire app's background black and can't I change it?
 how to get the hairline shadow back when drilling farther down in the iew hierarchy?
+make suggestions suck less -- is there a nicer way to do it than to assign a weight to every ingredient
 
 design todos:
 3 pages per recipe:
