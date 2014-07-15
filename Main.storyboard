@@ -87,10 +87,10 @@
             </objects>
             <point key="canvasLocation" x="1838" y="1478"/>
         </scene>
-        <!--Recipe Detail View Controller2-->
+        <!--Recipe Detail View Controller-->
         <scene sceneID="Us1-xD-hgL">
             <objects>
-                <viewController storyboardIdentifier="RecipeDetailViewController" id="caK-oP-HSY" customClass="RecipeDetailViewController2" customModule="ios_drinks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecipeDetailViewController" id="caK-oP-HSY" customClass="RecipeDetailViewController" customModule="ios_drinks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zw2-MC-Yuv"/>
                         <viewControllerLayoutGuide type="bottom" id="nR8-DS-QyZ"/>
@@ -103,7 +103,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IngredientPrototypeCell" textLabel="ONV-BP-85C" detailTextLabel="hvD-xT-bum" style="IBUITableViewCellStyleValue2" id="n2j-g4-pMg">
+                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ingredientPrototypeCell" textLabel="ONV-BP-85C" detailTextLabel="hvD-xT-bum" style="IBUITableViewCellStyleValue2" id="n2j-g4-pMg">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n2j-g4-pMg" id="JWO-i5-ye6">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -123,6 +123,29 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="instructionsPrototypeCell" id="gqX-Lh-Ggo" customClass="InstructionsTableViewCell" customModule="ios_drinks" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gqX-Lh-Ggo" id="grv-PK-I26">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="instructions text instructions text" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="RDO-ao-1fg">
+                                                    <rect key="frame" x="20" y="12" width="280" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RDO-ao-1fg" firstAttribute="leading" secondItem="grv-PK-I26" secondAttribute="leading" constant="20" id="5oF-Cc-Mjf"/>
+                                                <constraint firstAttribute="bottom" secondItem="RDO-ao-1fg" secondAttribute="bottom" constant="11" id="isb-ba-Bz7"/>
+                                                <constraint firstAttribute="trailing" secondItem="RDO-ao-1fg" secondAttribute="trailing" constant="20" id="t5S-L3-LcR"/>
+                                                <constraint firstItem="RDO-ao-1fg" firstAttribute="top" secondItem="grv-PK-I26" secondAttribute="top" constant="12" id="veG-ak-tbL"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="proseTextLabel" destination="RDO-ao-1fg" id="SQQ-vb-bgW"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -136,7 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZS-zH-J3C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2346" y="1478"/>
+            <point key="canvasLocation" x="2346" y="1476"/>
         </scene>
         <!--Similar Drinks View Controller-->
         <scene sceneID="cvi-1g-D74">

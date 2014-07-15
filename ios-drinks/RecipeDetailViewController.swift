@@ -1,197 +1,123 @@
 //
-//  RecipeDetailViewController.swift
+//  RecipeDetailViewController2.swift
 //  ios-drinks
 //
-//  Created by Sean Kelley on 6/15/14.
+//  Created by Sean Kelley on 7/3/14.
 //  Copyright (c) 2014 Sean Kelley. All rights reserved.
 //
 
 import UIKit
 
-class IngredientSection {
-    let title: String
-    let ingredients: MeasuredIngredient[]
+let _RecipeDetailViewController_INGREDIENTS_PROTOTYPE_CELL_IDENTIFIER = "ingredientPrototypeCell"
+let _RecipeDetailViewController_INSTRUCTIONS_PROTOTYPE_CELL_IDENTIFIER = "instructionsPrototypeCell"
 
-    init(title: String, ingredients: MeasuredIngredient[]) {
-        self.title = title
-        self.ingredients = ingredients
-    }
-}
-
-enum RowType {
+enum RecipeDetailCellType {
     case Ingredient
     case Instructions
-    case Notes
-    case Source
 }
 
-class RecipeDetailViewController : UITableViewController {
-    var allRecipeResults: RecipeSearchResult[] = []
-    var currentResultIndex: Int = -1
+class RecipeDetailViewController: RecipeDetailPageViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet var tableView: UITableView
 
-    var _ingredientSections: IngredientSection[] = []
-
-    var _recipeResult: RecipeSearchResult {
-        return self.allRecipeResults[self.currentResultIndex]
+    override func viewDidLoad() {
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
 
-    var _hasNotes: Bool {
-        if let _ = self._recipeResult.recipe.notes {
-            return true
-        } else {
-            return false
-        }
+    var _ingredientSectionCount: Int {
+        return
+            (self.recipeResult.availableIngredients.count  > 0 ? 1 : 0) +
+            (self.recipeResult.substituteIngredients.count > 0 ? 1 : 0) +
+            (self.recipeResult.missingIngredients.count    > 0 ? 1 : 0)
     }
 
-    var _hasSource: Bool {
-        if let _ = self._recipeResult.recipe.sourceName {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    var _proseSectionCount: Int {
-        return 1 + (self._hasNotes ? 1 : 0) + (self._hasSource ? 1 : 0)
-    }
-
-    override func viewDidLoad()  {
-        super.viewDidLoad()
-
-        self._regenerateContents()
-    }
-
-    func _regenerateContents() {
-        self._generateTableSections()
-
-        self.tableView.reloadData()
-        self.tableView.setContentOffset(CGPointMake(0.0, -self.tableView.contentInset.top), animated: true)
-    }
-
-    func _generateTableSections() {
-        let orderedTitles = [ "Missing Ingredients", "Ingredients (Substitutions)", "Ingredients" ]
-        let orderedIngredientLists = [ self._recipeResult.missingIngredients, self._recipeResult.substituteIngredients, self._recipeResult.availableIngredients ]
-
-        self._ingredientSections = []
-        for i in 0..3 {
-            if orderedIngredientLists[i].count > 0 {
-                self._ingredientSections += IngredientSection(title: orderedTitles[i], ingredients: orderedIngredientLists[i])
-            }
-        }
-    }
-
-    // This is the worst thing.
-    func _rowTypeForIndexPath(tableView: UITableView, indexPath: NSIndexPath) -> RowType {
-        var sectionDiff = indexPath.section - (self.numberOfSectionsInTableView(tableView) - self._proseSectionCount)
-        switch sectionDiff {
-        case 0:
-            return .Instructions
-        case 1:
-            if self._hasNotes {
-                return .Notes
-            }
-            fallthrough
-        case 2:
-            if self._hasSource {
-                return .Source
-            }
-            fallthrough
-        default:
+    func _cellTypeForSection(section: Int) -> RecipeDetailCellType {
+        if section < self._ingredientSectionCount {
             return .Ingredient
+        } else {
+            return .Instructions
         }
     }
 
-    func _rowTypeForSection(tableView: UITableView, section: Int) -> RowType {
-        return self._rowTypeForIndexPath(tableView, indexPath: NSIndexPath(forRow: 0, inSection: section))
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return self._ingredientSectionCount + 1
     }
 
-    // pragma mark - UITableViewDataSource
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int  {
-        return self._ingredientSections.count + self._proseSectionCount
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int  {
-        if section < self._ingredientSections.count {
-            return self._ingredientSections[section].ingredients.count
-        } else {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch (self._cellTypeForSection(section)) {
+        case .Ingredient:
+            return self._ingredientGroupForSection(section).count
+        case .Instructions:
             return 1
         }
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?  {
-        if section < self._ingredientSections.count {
-            return self._ingredientSections[section].title
-        } else {
-            switch (self._rowTypeForSection(tableView, section: section)) {
-            case .Ingredient:
-                assert(false, "Mismatch between number of ingredient sections and computed row type.")
-                return nil
-            case .Instructions:
-                return "Instructions"
-            case .Notes:
-                return "Notes"
-            case .Source:
-                return "Source"
-            default:
-                assert(false, "Unhandled enumeration type in switch.")
-                return nil
-            }
-        }
-    }
-
-    func _ingredientAtIndexPath(indexPath: NSIndexPath) -> MeasuredIngredient {
-        return self._ingredientSections[indexPath.section].ingredients[indexPath.row]
-    }
-
-    func _measuredIngredientCellForIndexPath(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("MeasuredIngredientPrototypeCell", forIndexPath:indexPath) as UITableViewCell
-        var ingredient = self._ingredientAtIndexPath(indexPath)
-
-        cell.textLabel.text = ingredient.measurementDisplay
-        cell.detailTextLabel.text = ingredient.ingredientDisplay
-
-        return cell
-    }
-
-    func _proseTextCellForIndexPath(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("ProseTextPrototypeCell", forIndexPath:indexPath) as UITableViewCell
-
-        // Configure shared values.
-        cell.textLabel.text = nil // "" // Trick the layout into ignoring this label entirely.
-        cell.detailTextLabel.numberOfLines = 0
-        cell.detailTextLabel.lineBreakMode = .ByWordWrapping
-
-        // Reset some stuff.
-        cell.accessoryType = .None
-        cell.selectionStyle = .None
-        cell.userInteractionEnabled = false
-
-        // Configure according to what cell it actually is.
-        switch self._rowTypeForIndexPath(tableView, indexPath: indexPath) {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> Double {
+        switch (self._cellTypeForSection(indexPath.section)) {
         case .Ingredient:
-            assert(false, "Ingredient case should be handled elsewhere.")
-        case .Source:
-            cell.detailTextLabel.text = self._recipeResult.recipe.sourceName;
-            if self._recipeResult.recipe.sourceUrl {
-                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-                cell.selectionStyle = UITableViewCellSelectionStyle.Default
-                cell.userInteractionEnabled = true
-            }
+            return 45.0
         case .Instructions:
-            cell.detailTextLabel.text = self._recipeResult.recipe.instructions
-        case .Notes:
-            cell.detailTextLabel.text = self._recipeResult.recipe.notes
-        }
+            let instructions = self.recipeResult.recipe.instructions
+            let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as InstructionsTableViewCell
 
-        return cell
+            let size = NSString(string: instructions).boundingRectWithSize(
+                CGSize(width: 300.0, height: CGFLOAT_MAX),
+                options: .UsesLineFragmentOrigin,
+                attributes: [ NSFontAttributeName: cell.proseTextLabel.font ],
+                context: nil)
+
+            return Double(size.height + 45.0)
+        }
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section < self._ingredientSections.count {
-            return self._measuredIngredientCellForIndexPath(tableView, indexPath: indexPath)
-        } else {
-            return self._proseTextCellForIndexPath(tableView, indexPath: indexPath)
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        switch (self._cellTypeForSection(indexPath.section)) {
+        case .Ingredient:
+            let cell = tableView.dequeueReusableCellWithIdentifier(_RecipeDetailViewController_INGREDIENTS_PROTOTYPE_CELL_IDENTIFIER) as UITableViewCell
+
+            let ingredient = self._measuredIgredientForIndexPath(indexPath)
+
+            cell.textLabel.text = ingredient.measurementDisplay
+            cell.detailTextLabel.text = ingredient.ingredientDisplay
+            
+            return cell
+        case .Instructions:
+            let cell = tableView.dequeueReusableCellWithIdentifier(_RecipeDetailViewController_INSTRUCTIONS_PROTOTYPE_CELL_IDENTIFIER) as InstructionsTableViewCell
+
+            let instructions = self.recipeResult.recipe.instructions
+
+            cell.proseTextLabel.text = instructions
+
+            return cell
+        }
+    }
+
+    func _ingredientGroupForSection(section: Int) -> MeasuredIngredient[] {
+        return [
+            self.recipeResult.availableIngredients,
+            self.recipeResult.substituteIngredients,
+            self.recipeResult.missingIngredients
+        ].filter({ $0.count > 0 })[section]
+    }
+
+    func _measuredIgredientForIndexPath(indexPath: NSIndexPath) -> MeasuredIngredient {
+        return self._ingredientGroupForSection(indexPath.section)[indexPath.row]
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch (self._cellTypeForSection(section)) {
+        case .Ingredient:
+            // I can't one-line this or remove the names because otherwise Swift will shit itself
+            // even though it should be identical without using intermediate values.
+            var sections: (ingredients: MeasuredIngredient[], title: String)[] = [
+                (ingredients: self.recipeResult.missingIngredients,    title: "Missing Ingredients"),
+                (ingredients: self.recipeResult.availableIngredients,  title: "Ingredients"),
+                (ingredients: self.recipeResult.substituteIngredients, title: "Ingredients (Substitutions)")
+                ].filter({ $0.ingredients.count > 0 })
+            return sections[section].title
+
+        case .Instructions:
+            return "Preparation"
         }
     }
 }

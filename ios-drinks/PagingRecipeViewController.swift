@@ -25,7 +25,7 @@ class PagingRecipeViewController: UIPageViewController, UIPageViewControllerData
     }
 
     var _imageController: RecipeImageViewController!
-    var _detailsController: RecipeDetailViewController2!
+    var _detailsController: RecipeDetailViewController!
     var _similarDrinksController: SimilarDrinksViewController!
 
     var _currentViewControllers: RecipeDetailPageViewController[] {
@@ -38,7 +38,7 @@ class PagingRecipeViewController: UIPageViewController, UIPageViewControllerData
         self._imageController =
             self.storyboard.instantiateViewControllerWithIdentifier("RecipeImageViewController") as RecipeImageViewController
         self._detailsController =
-            self.storyboard.instantiateViewControllerWithIdentifier("RecipeDetailViewController") as RecipeDetailViewController2
+            self.storyboard.instantiateViewControllerWithIdentifier("RecipeDetailViewController") as RecipeDetailViewController
         self._similarDrinksController =
             self.storyboard.instantiateViewControllerWithIdentifier("SimilarDrinksViewController") as SimilarDrinksViewController
 
