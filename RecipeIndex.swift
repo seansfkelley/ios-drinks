@@ -173,7 +173,7 @@ class RecipeIndex {
     }
 
     func getSimilarRecipes(recipe: Recipe) -> Recipe[] {
-        return self.allRecipes.filter { self._similarityIndex($0, r2: recipe) > 0.05 }
+        return self.allRecipes.filter { self._similarityIndex($0, r2: recipe) > 0.1 && $0.name != recipe.name }
     }
 
     func _similarityIndex(r1: Recipe, r2: Recipe) -> Float {

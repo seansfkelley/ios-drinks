@@ -56,4 +56,18 @@ class SimilarDrinksViewController: RecipeDetailPageViewController, UITableViewDe
 
         return cell
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject) {
+        var controller = UIUtils.actualTargetViewControllerForSegue(segue)
+
+        if controller.isKindOfClass(PagingRecipeViewController.self) {
+            let pagingController = controller as PagingRecipeViewController
+            let indexPath = self.tableView.indexPathForSelectedRow()
+
+            pagingController.allRecipeResults = self.manager.sortedItems
+            pagingController.currentResultIndex = self.manager.sortedIndexForIndexPath(indexPath)
+        } else {
+            assert(false, "Unknown segue. All segues must be handled.")
+        }
+    }
 }
